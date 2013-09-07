@@ -1,0 +1,45 @@
+geo $maintenance_ip {
+    default 0;
+    127.0.0.1/24    1;  # TODO replace with your internal IP block
+}
+
+server {
+    client_max_body_size 20M;
+    server_name localhost;  # TODO puppet template variable
+    access_log /var/log/nginx/aklogbook.access.log;
+    error_log /var/log/nginx/aklogbook.error.log;
+
+    ### Start Maintenance mode
+    if ($maintenance_ip = 0) {
+        set $maintenance y;
+    }
+    if (-f /tmp/.maintenance_mode) {
+        set $maintenance y$maintenance;
+    }
+    if ($maintenance = yy) {
+        return 503;
+    }
+    error_page 503 @maintenance;
+    location @maintenance {
+        root /usr/local/apps/land_owner_tools/media;
+        rewrite ^(.*)$ /maintenance.html break;
+    }
+    ### End Maintenance mode
+
+    location / {
+        uwsgi_pass unix:///var/run/uwsgi/app/aklogbook/socket;
+        include uwsgi_params;
+    }
+
+    location /static/  {
+        alias /usr/local/apps/formhub/static/;
+    }
+    
+    #location /flower/ {
+    #    proxy_set_header Host $http_host;
+    #    proxy_pass http://localhost:5555;
+    #    rewrite  ^/flower/(.*)  /$1 break;
+    #    auth_basic "Restricted";
+    #    auth_basic_user_file  /usr/local/apps/land_owner_tools/celeryflower-passwords;
+    #}
+}

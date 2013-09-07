@@ -1,0 +1,1 @@
+source /usr/local/venv/aklogbook/bin/activate && cd /usr/local/apps/aklogbook

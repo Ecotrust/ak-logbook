@@ -1,0 +1,19 @@
+# postgres
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'aklogbook',
+        'USER': '<%= user %>',
+        'PASSWORD': '',
+    }
+}
+
+ENKETO_URL = 'http://localhost:8000/' # TODO
+
+MONGO_DATABASE = {
+    'HOST': 'localhost',
+    'PORT': 27017,
+    'NAME': 'aklogbook',
+    'USER': '',
+    'PASSWORD': ''
+}
