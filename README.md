@@ -1,4 +1,3 @@
-
 Alaska Logbook
 ===============
 
@@ -11,9 +10,12 @@ Requirements:
 * git
 
 Clone the following three repos:
-1. `https://github.com/Ecotrust/ak-logbook.git`
-2. `https://github.com/Ecotrust/formhub.git`
-3. `https://github.com/Ecotrust/enketo.git`
+
+```
+git clone https://github.com/Ecotrust/ak-logbook.git
+git clone https://github.com/Ecotrust/formhub.git
+git clone https://github.com/Ecotrust/enketo.git
+```
 
 From `ak-logbook`, run `vagrant up`
 
