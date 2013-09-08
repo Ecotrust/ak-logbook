@@ -48,20 +48,29 @@ def import_data():
     run('cd %(app_dir)s && %(venv)s/bin/python manage.py import_data' % vars)
 
 
+def _install_mysql_fixtures():
+    run('for i in /usr/local/apps/enketo/devinfo/database/*.sql; \
+        do \
+          mysql -u enketo --password=enketo -h localhost enketo < $i; \
+        done')    
+
+
 def init():
     """ Initialize the forest planner application """
     _install_requirements()
     _install_django()
-    #_install_starspan()
-    #_recache()
+    _install_mysql_fixtures()
+
     #restart_services()
 
 
 def restart_services():
-    run('sudo service mongodb restart')
     run('sudo service uwsgi restart')
     run('sudo service nginx restart')
+    run('sudo service mongodb restart')
+    run('sudo service php5-fpm restart')
     #run('sudo supervisorctl restart all')
+    run('sudo supervisorctl reload || sudo service supervisor start')
     run('sleep 2 && sudo supervisorctl status')
 
 

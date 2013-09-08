@@ -11,7 +11,7 @@ if $settings_template == undef {
     $settings_template = "settings_template.py.erb"
 }
 if $url_base == undef {
-    $url_base = 'http://localhost:8080'
+    $url_base = 'http://localhost'
 }
 if $pgsql_base == undef {
     $pgsql_base = '/var/lib/postgresql/'
@@ -19,15 +19,6 @@ if $pgsql_base == undef {
 if $num_cpus == undef {
     $num_cpus = 1
 }
-if $postgres_shared_buffers == undef {
-    $postgres_shared_buffers = '48MB'
-    # 24 MB default; adjust to 1/4 system resources
-}
-if $shmmax == undef {
-    $shmmax = 67108864
-    # 32 MB default; adjust to 1/2 system resources
-}
-
 
 #####################################################################
 # ensure that apt update is run before any packages are installed
@@ -61,12 +52,30 @@ package { "libxslt1-dev": ensure => "installed"}
 package { "rabbitmq-server": ensure => "installed"}
 package { "mongodb": ensure => installed}
 
+package { "php5-fpm": ensure => installed}
+package { "php5-xsl": ensure => installed}
+package { "php5-curl": ensure => installed}
+package { "php-apc": ensure => installed}
+package { "php5-mcrypt": ensure => installed}
+package { "php5-mysql": ensure => installed}
+
 package {'atop': ensure => "latest"}
 package {'htop': ensure => "latest"}
 package {'sysstat': ensure => "latest"}
 package {'iotop': ensure => "latest"}
 
 class {'nullmailer': adminaddr => "forestplanner@ecotrust.org", remoterelay => "mail.ecotrust.org"}
+
+class { 'mysql::server':
+  config_hash => { 'root_password' => 'enketo' }
+}
+
+mysql::db { 'enketo':
+  user     => 'enketo',
+  password => 'enketo',
+  host     => 'localhost',
+  grant    => ['all'],
+}
 
 
 # use uwsgi packages but only for the config system; binary is out of date! 
@@ -109,15 +118,9 @@ file { "/etc/nginx/sites-enabled/default":
    require => Package['nginx-full']
 }
 
-sysctl { "kernel.shmmax": 
-   value => $shmmax
-}
-
 class { "postgresql::server": version => "9.1",
     listen_addresses => "'*'",  # TODO localhost',
     max_connections => 100,
-    shared_buffers => $postgres_shared_buffers,
-    require => Sysctl['kernel.shmmax']
 }
 
 postgresql::database { "aklogbook":
@@ -146,9 +149,3 @@ file { "celeryd.conf":
   content => template("celeryd.erb"),
   require => Package['supervisor']
 }
-
-# file { "celeryflower.conf":
-#   path => "/etc/supervisor/conf.d/celeryflower.conf",
-#   content => template("celeryflower.erb"),
-#   require => Package['supervisor']
-# }
