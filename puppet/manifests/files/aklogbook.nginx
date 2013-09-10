@@ -3,8 +3,7 @@ server {
     access_log /var/log/nginx/enketo.access.log;
     error_log /var/log/nginx/enketo.error.log;
 
-    listen   80; ## listen for ipv4; this line is default and implied
-    listen   [::]:80 default ipv6only=on; ## listen for ipv6
+    listen   80;
 
     root /usr/local/apps/enketo/public;
 
@@ -33,6 +32,8 @@ server {
     server_name localhost;  # TODO puppet template variable
     access_log /var/log/nginx/aklogbook.access.log;
     error_log /var/log/nginx/aklogbook.error.log;
+
+    listen   80 default_server;
 
     location / {
         uwsgi_pass unix:///var/run/uwsgi/app/aklogbook/socket;

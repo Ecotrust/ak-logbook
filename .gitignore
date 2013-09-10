@@ -34,4 +34,4 @@ nosetests.xml
 .project
 .pydevproject
 .vagrant
-fabvars.py
+fab_vars.py

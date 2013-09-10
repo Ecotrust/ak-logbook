@@ -9,15 +9,17 @@ Requirements:
 * Vagrant & VirtualBox
 * git
 
-Clone the following three repos:
 
 ```
 git clone https://github.com/Ecotrust/ak-logbook.git
 git clone https://github.com/Ecotrust/formhub.git
 git clone https://github.com/Ecotrust/enketo.git
+
+cd ak-logbook
+vagrant up
+fab dev init
 ```
 
-From `ak-logbook`, run `vagrant up`
 
 TODO:
 * submodules

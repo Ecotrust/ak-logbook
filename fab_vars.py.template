@@ -1,14 +1,7 @@
-KEY_FILENAME = 'YOUR PRIVATE KEY FOR VAGRANT LOCAL DEV'
+KEY_FILENAME = 'C:/Users/mperry/.vagrant.d/insecure_private_key'
 
-AWS_KEY_FILENAME_STAGE = ['C:/YOUR_FILE.pem']
-AWS_PUBLIC_DNS_STAGE = ['user@PUBLIC_DNS']
-AWS_SITENAME_STAGE = 'foo.bar.org'
-AWS_VARS_STAGE = {
+AWS_KEY_FILENAME_PROD = 'C:\aws.pem'
+AWS_PUBLIC_DNS_PROD = ['ubuntu@54.0.0.0',]
+AWS_VARS_PROD = {
     'num_cpus': 1,
-    'shmmax': '268435456',  # 1/2 system memory in bytes
-    'postgres_shared_buffers': '128MB'  # 1/4 system memory in MB
 }
-
-AWS_KEY_FILENAME_PROD = ['C:/YOUR_FILE.pem']
-AWS_PUBLIC_DNS_PROD = ['user@PUBLIC_DNS']
-AWS_SITENAME_STAGE = 'bar.org'
