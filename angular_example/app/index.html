@@ -40,8 +40,16 @@
       </div>
     </div> 
     
-    <div class="container-fluid" ng-view=""></div>
+    <div class="container-fluid" ng-view="">
 
+        <div class="row">
+          <div class="span4" ng-view="main">
+          </div>
+          <div class="span8" ng-view="permitDetail">
+          </div>
+        </div>
+
+    </div>
 
 
 
@@ -79,6 +87,8 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/services/TestFactory.js"></script>
+    <script src="scripts/controllers/permitDetail.js"></script>
+    <script src="scripts/filters/permitFilter.js"></script>
     <!-- endbuild -->
 </body>
 </html>

@@ -8,6 +8,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/permit/:permitId', {
+        templateUrl: 'views/permitDetail.html',
+        controller: 'PermitdetailCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

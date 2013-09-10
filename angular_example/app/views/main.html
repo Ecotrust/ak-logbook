@@ -1,33 +1,5 @@
-<div class="row">
-  <div class="span4">
-      <h4> Permit Numbers </h4>
-      <ul class="unstyled">
-        <li ng-repeat="val in uniqueStuff('obs_nm')"><p ng-bind="val"></p></li>
-      </ul>
-      <button type="button" class="btn btn-success">Success</button>
-  </div>
-  <div class="span8">
-      <h4> Observations </h4>
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>obs_nm</th>
-            <th>datum</th>
-            <th>coord_nm</th>
-            <th>lat</th>
-            <th>lon</th>
-            <th>pics</th>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr ng-repeat="obs in observations">
-            <td ng-bind="obs.today"></td>
-            <td ng-bind="obs.datum"></td>
-            <td ng-bind="obs.coord_md"></td>
-            <td ng-bind="obs._geolocation[0]"></td>
-            <td ng-bind="obs._geolocation[1]"></td>
-            <td ng-bind="obs.pics"></td>
-          </tr>
-        </tbody>
-  </div>
-</div>
+<h4> Permit Numbers </h4>
+<ul class="unstyled">
+  <li ng-repeat="val in uniqueStuff('obs_nm')"><a ng-href="#/permit/{{val}}"ng-bind="val"></p></li>
+</ul>
+<button type="button" class="btn btn-success">Success</button>
