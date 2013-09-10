@@ -1,42 +1,36 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <!-- <a class="brand" href="#">Title</a> -->
     <ul class="nav">
         <li><a href="#/"><i class="icon-chevron-left"></i>Back to Permit List</a></li>
+        <li class="divider"></li>
+        <!-- 
+        <li><a class="brand" href="#">Title</a></li>
+        -->
         <li><a href="">Export FRP Form</a></li>
         <li><a href="">AWC Nomination</a></li>
     </ul>
   </div>
 </div>
-<div>
-    <h4> Observations for Permit <span class="text-info" ng-bind="permitId"></span></h4>
-    <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>obs_nm</th>
-            <th>today</th>
-            <th>datum</th>
-            <th>coord_nm</th>
-            <th>lat</th>
-            <th>lon</th>
-            <th>pics</th>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
-            <td ng-bind="obs.obs_nm"></td>
-            <td ng-bind="obs.today"></td>
-            <td ng-bind="obs.datum"></td>
-            <td ng-bind="obs.coord_md"></td>
-            <td ng-bind="obs._geolocation[0]"></td>
-            <td ng-bind="obs._geolocation[1]"></td>
-            <td ng-bind="obs.pics"></td>
-          </tr>
-        </tbody>
-    </table>
-</div>
-<div>
-    <leaflet height="500px" width="98%" tiles="tiles" markers="markers" center="center"></leaflet>
-</div>
+<div class="row">
+    <div class="span8">
+        <h4> Observations for Permit <span class="text-info" ng-bind="permitId"></span></h4>
+        <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>permit num</th>
+                <th>date</th>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
+                <td ng-bind="obs.obs_nm"></td>
+                <td ng-bind="obs.today"></td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="span8">
+        <leaflet height="500px" width="98%" tiles="tiles" markers="markers" center="center"></leaflet>
+    </div>
 </div>
 
