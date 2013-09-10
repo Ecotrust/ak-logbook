@@ -1,5 +1,18 @@
 <h4> Permit Numbers </h4>
+<!--
 <ul class="unstyled">
   <li ng-repeat="val in uniqueStuff('obs_nm')"><a ng-href="#/permit/{{val}}"ng-bind="val"></p></li>
 </ul>
-<button type="button" class="btn btn-success">Success</button>
+-->
+
+<div class="dropdown clearfix">
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" 
+      style="display: block; position: static; margin-bottom: 5px; width: 280px;">
+      <!--
+    <li><a tabindex="-1" href="#">Regular link</a></li>
+    <li class="disabled"><a tabindex="-1" href="#">Disabled link</a></li>
+    <li><a tabindex="-1" href="#">Another link</a></li>
+  -->
+    <li ng-repeat="val in uniqueStuff('obs_nm')"><a ng-href="#/permit/{{val}}"ng-bind="val"></p></li>
+  </ul>
+</div>

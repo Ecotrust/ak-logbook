@@ -1,6 +1,11 @@
 'use strict';
 
-var app = angular.module('angularjsGruntExampleApp', ['ngResource']);
+var app = angular.module('angularjsGruntExampleApp',
+  [
+    'ngResource',
+    'leaflet-directive'
+  ]
+);
 
 app.config(function ($routeProvider) {
     $routeProvider
