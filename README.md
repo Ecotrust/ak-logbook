@@ -38,6 +38,13 @@ Edit the `/etc/hosts` file on both the host and virtual server.
 
 * On Windows hosts edit as adminstrator `C:\Windows\System32\drivers\etc\hosts`
 
+## NPM
+npm install -g yo grunt-cli bower karma generator-angular
+cd <code>
+npm install # install local node packages
+bower install
+
+
 TODO:
 * submodules
 * /etc/hosts stuff
