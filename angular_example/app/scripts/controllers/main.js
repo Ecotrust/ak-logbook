@@ -3,7 +3,7 @@
 //angular.module('angularjsGruntExampleApp')
 app.controller('MainCtrl', function ($scope, TestFactory) {
 
-  $scope.observations = TestFactory.awesomeStuff.query();
+  $scope.observations = TestFactory.query();
 
   $scope.filterObs = function() {
       $scope.observations.pop();

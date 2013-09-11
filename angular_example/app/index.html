@@ -99,6 +99,6 @@
     <script src="scripts/services/TestFactory.js"></script>
     <script src="scripts/controllers/permitDetail.js"></script>
     <!-- endbuild -->
-    <script src="sessions/auth.js"></script> <!-- dynamic behind nginx, static behind grunt -->
+    <script ng-src="{{$root.baseUrl}}/sessions/auth.js"></script>
 </body>
 </html>
