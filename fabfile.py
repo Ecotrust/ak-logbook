@@ -3,6 +3,7 @@ from fabric.api import *
 vars = {
     'app_dir': '/usr/local/apps/aklogbook',
     'formhub': '/usr/local/apps/formhub',
+    'enketo': '/usr/local/apps/enketo',
     'venv': '/usr/local/venv/aklogbook',
 }
 
@@ -80,6 +81,8 @@ def runserver():
 def update():
     """ Sync with master git repo """
     run('cd %(app_dir)s && git fetch && git merge origin/master' % vars)
+    run('cd %(formhub)s && git fetch && git merge origin/master' % vars)
+    run('cd %(enketo)s && git fetch && git merge origin/master' % vars)
 
 
 def _install_starspan():
@@ -96,8 +99,6 @@ def deploy():
     for s in env.hosts:
         if 'vagrant' in s:
             raise Exception("You can't deploy() to local dev, just use `init restart_services`")
-    maintenance("on")
     update()
     init()
     restart_services()
-    maintenance("off")
