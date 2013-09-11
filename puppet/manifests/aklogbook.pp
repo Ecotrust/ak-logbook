@@ -34,6 +34,7 @@ include apt
 package { "build-essential": ensure => "installed"}
 package { "python-software-properties": ensure => "installed"}
 package { "git-core": ensure => "latest"}
+package { "unzip": ensure => "latest"}
 package { "vim": ensure => "latest"}
 package { "python-psycopg2": ensure => "latest"}
 package { "python-virtualenv": ensure => "latest"}
