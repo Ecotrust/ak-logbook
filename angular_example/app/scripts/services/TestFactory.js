@@ -1,10 +1,9 @@
 'use strict';
 
 app.factory('TestFactory', function ($resource, $rootScope) {
-  var apiUrl = 'http://aklogbook.ecotrust.org/:userId/forms/:formId/api';
+  var apiUrl = $rootScope.baseUrl + '/:userId/forms/:formId/api';
 
   if (!$rootScope.userId || !$rootScope.formId) {
-    alert("Not logged in? check /app/sessions/auth.js \n TODO: redirect to login");
     return;
   }
 

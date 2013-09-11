@@ -21,3 +21,9 @@ app.config(function ($routeProvider) {
         redirectTo: '/'
       });
   });
+
+app.run(function($rootScope){
+  if (!$rootScope.baseUrl) {
+    $rootScope.baseUrl = 'http://aklogbook.ecotrust.org';
+  }
+});
