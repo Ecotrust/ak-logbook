@@ -46,11 +46,6 @@ def manage(command):
     del vars['command']
 
 
-def import_data():
-    """ Fetches and installs data fixtures (WARNING: 5+GB of data; hence not checking fixtures into the repo) """
-    run('cd %(app_dir)s && %(venv)s/bin/python manage.py import_data' % vars)
-
-
 def _install_mysql_fixtures():
     run('for i in /usr/local/apps/enketo/devinfo/database/*.sql; \
         do \
