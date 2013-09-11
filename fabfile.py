@@ -73,7 +73,7 @@ def restart_services():
 
 def runserver():
     """ Run the django dev server on port 8000 """
-    run('cd %(formhub)s && %(venv)s/bin/python manage.py runserver 0.0.0.0:8080' % vars)
+    run('cd %(formhub)s && %(venv)s/bin/python manage.py runserver 0.0.0.0:8000' % vars)
 
 
 def update():
