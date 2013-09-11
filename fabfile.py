@@ -27,7 +27,8 @@ def prod():
 
 
 def _install_requirements():
-    run('cd %(app_dir)s && %(venv)s/bin/pip install --upgrade setuptools && %(venv)s/bin/pip install -r ../formhub/requirements.pip' % vars)
+    run('cd %(app_dir)s && %(venv)s/bin/pip install --upgrade setuptools \
+        && %(venv)s/bin/pip install -r ../formhub/requirements.pip' % vars)
 
 
 def _install_django():
@@ -55,12 +56,9 @@ def _install_mysql_fixtures():
 
 
 def init():
-    """ Initialize the forest planner application """
     _install_requirements()
     _install_django()
     _install_mysql_fixtures()
-
-    #restart_services()
 
 
 def restart_services():
@@ -79,7 +77,7 @@ def runserver():
 
 
 def update():
-    """ Sync with master git repo """
+    """ Sync with master git repos """
     run('cd %(app_dir)s && git fetch && git merge origin/master' % vars)
     run('cd %(formhub)s && git fetch && git merge origin/master' % vars)
     run('cd %(enketo)s && git fetch && git merge origin/master' % vars)
