@@ -105,19 +105,17 @@ def deploy(buildarg=None):
             raise Exception("You can't deploy() to local dev, just use `init restart_services`")
 
     # Local: build grunt and zip it
-    if buildarg != 'nobuild':
-        try:
-            os.remove('dist.zip')
-        except OSError:
-            pass
-
-        local('cd angular_example && grunt build')
-        _zipdir("angular_example/dist", 'dist.zip')
-
+    # if buildarg != 'nobuild':
+    #     try:
+    #         os.remove('dist.zip')
+    #     except OSError:
+    #         pass
+    #     local('cd angular_example && grunt build')
+    #     _zipdir("angular_example/dist", 'dist.zip')
     # Remote: transfer and unzip
-    run('cd %(app_dir)s && rm -r dist.zip angular_example/dist/ || echo "nothing to delete"' % vars)
-    put('dist.zip', vars['app_dir'])
-    run('cd %(app_dir)s && unzip -o dist.zip' % vars)
+    # run('cd %(app_dir)s && rm -r dist.zip angular_example/dist/ || echo "nothing to delete"' % vars)
+    # put('dist.zip', vars['app_dir'])
+    # run('cd %(app_dir)s && unzip -o dist.zip' % vars)
 
     # Normal updates
     update()

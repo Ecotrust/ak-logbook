@@ -24,6 +24,6 @@ app.config(function ($routeProvider) {
 
 app.run(function($rootScope){
   if (!$rootScope.baseUrl) {
-    $rootScope.baseUrl = 'http://aklogbook.ecotrust.org';
+    $rootScope.baseUrl = 'http://localhost';
   }
 });
