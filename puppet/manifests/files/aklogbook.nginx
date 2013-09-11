@@ -35,6 +35,15 @@ server {
 
     listen   80 default_server;
 
+    location /app/sessions/auth.js {
+        uwsgi_pass unix:///var/run/uwsgi/app/aklogbook/socket;
+        include uwsgi_params;
+    }
+
+    location /app/ {
+        alias /usr/local/apps/aklogbook/angular_example/dist/;
+    }
+
     location / {
         uwsgi_pass unix:///var/run/uwsgi/app/aklogbook/socket;
         include uwsgi_params;
