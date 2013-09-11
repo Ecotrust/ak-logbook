@@ -96,7 +96,7 @@ def _zipdir(path, outzip):
     zip.close()
 
 
-def deploy():
+def deploy(buildarg=None):
     """
     Deploy to a staging/production environment
     """
@@ -105,17 +105,19 @@ def deploy():
             raise Exception("You can't deploy() to local dev, just use `init restart_services`")
 
     # Local: build grunt and zip it
-    # try:
-    #     os.remove('dist.zip')
-    # except OSError:
-    #     pass
+    if buildarg != 'nobuild':
+        try:
+            os.remove('dist.zip')
+        except OSError:
+            pass
 
-    # local('cd angular_example && grunt build')
-    # _zipdir("angular_example/dist", 'dist.zip')
+        local('cd angular_example && grunt build')
+        _zipdir("angular_example/dist", 'dist.zip')
 
     # Remote: transfer and unzip
-    #put('dist.zip', vars['app_dir'])
-    run('cd %(app_dir)s && unzip dist.zip' % vars)
+    run('cd %(app_dir)s && rm -r dist.zip angular_example/dist/ || echo "nothing to delete"' % vars)
+    put('dist.zip', vars['app_dir'])
+    run('cd %(app_dir)s && unzip -o dist.zip' % vars)
 
     # Normal updates
     update()
