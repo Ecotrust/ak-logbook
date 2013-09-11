@@ -1,4 +1,7 @@
 from fabric.api import *
+import os
+import zipfile
+
 
 vars = {
     'app_dir': '/usr/local/apps/aklogbook',
@@ -43,11 +46,6 @@ def manage(command):
     del vars['command']
 
 
-def import_data():
-    """ Fetches and installs data fixtures (WARNING: 5+GB of data; hence not checking fixtures into the repo) """
-    run('cd %(app_dir)s && %(venv)s/bin/python manage.py import_data' % vars)
-
-
 def _install_mysql_fixtures():
     run('for i in /usr/local/apps/enketo/devinfo/database/*.sql; \
         do \
@@ -80,7 +78,7 @@ def update():
     """ Sync with master git repos """
     run('cd %(app_dir)s && git fetch && git merge origin/master' % vars)
     run('cd %(formhub)s && git fetch && git merge origin/master' % vars)
-    run('cd %(enketo)s && git fetch && git merge origin/master' % vars)
+    run('cd %(enketo)s && git stash && git fetch && git merge origin/master && git stash pop' % vars)
 
 
 def _install_starspan():
@@ -90,6 +88,14 @@ def _install_starspan():
         if [ ! `which starspan` ]; then ./configure && make && sudo make install; fi')
 
 
+def _zipdir(path, outzip):
+    zip = zipfile.ZipFile('dist.zip', 'w')
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            zip.write(os.path.join(root, file))
+    zip.close()
+
+
 def deploy():
     """
     Deploy to a staging/production environment
@@ -97,6 +103,21 @@ def deploy():
     for s in env.hosts:
         if 'vagrant' in s:
             raise Exception("You can't deploy() to local dev, just use `init restart_services`")
+
+    # Local: build grunt and zip it
+    # try:
+    #     os.remove('dist.zip')
+    # except OSError:
+    #     pass
+
+    # local('cd angular_example && grunt build')
+    # _zipdir("angular_example/dist", 'dist.zip')
+
+    # Remote: transfer and unzip
+    #put('dist.zip', vars['app_dir'])
+    run('cd %(app_dir)s && unzip dist.zip' % vars)
+
+    # Normal updates
     update()
     init()
     restart_services()
