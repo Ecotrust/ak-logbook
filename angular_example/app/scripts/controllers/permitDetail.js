@@ -12,7 +12,7 @@ app.controller('PermitdetailCtrl', function ($scope, TestFactory, $routeParams) 
         $scope.center.zoom = 8;
     }
   };
-  $scope.observations = TestFactory.awesomeStuff.query(
+  $scope.observations = TestFactory.query(
     {'query': '{"obs_nm": "' + permitId + '"}'},
     function(res) {
         for (var i = res.length - 1; i >= 0; i--) {

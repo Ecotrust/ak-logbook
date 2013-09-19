@@ -1,5 +1,5 @@
 server {
-    server_name enketo;  # TODO puppet template variable
+    server_name enketo *.enketo;  # TODO puppet template variable
     access_log /var/log/nginx/enketo.access.log;
     error_log /var/log/nginx/enketo.error.log;
 

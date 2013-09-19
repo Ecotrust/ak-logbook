@@ -1,13 +1,9 @@
 'use strict';
 
-//angular.module('angularjsGruntExampleApp')
 app.controller('MainCtrl', function ($scope, TestFactory) {
+  // TODO make a more specific factory to grab unique permits for this user
 
-  $scope.observations = TestFactory.awesomeStuff.query();
-
-  $scope.filterObs = function() {
-      $scope.observations.pop();
-  };
+  $scope.observations = TestFactory.query();
 
   $scope.uniqueStuff = function(field) {
         var u = {}, a = [], ob;
