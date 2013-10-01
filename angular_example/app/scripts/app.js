@@ -26,4 +26,7 @@ app.run(function($rootScope){
   if (!$rootScope.baseUrl) {
     $rootScope.baseUrl = 'http://localhost';
   }
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
 });

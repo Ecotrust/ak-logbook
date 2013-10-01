@@ -1,0 +1,26 @@
+Alaska Image Copyright Info:
+
+alaska-kalasoft: http://pixabay.com/en/alaska-sunset-glacier-national-63728/
+    user: kalasoft
+    license: Public Domain CC0
+        (http://creativecommons.org/publicdomain/zero/1.0/)
+
+alaska-tpsdave: http://pixabay.com/en/alaska-wilderness-forest-trees-67310/
+    user: tpsdave
+    license: Public Domain CC0
+
+alaska-tpsdave_ice: http://pixabay.com/en/alaska-wilderness-glacier-67167/
+    user: tpsdave
+    license: Public Domain CC0
+
+alaska-tpsdave_lake: http://pixabay.com/en/alaska-brown-bear-wildlife-113134/
+    user: tpsdave
+    license: Public Domain CC0
+
+alaska-tpsdave_valley: http://pixabay.com/en/alaska-denali-river-water-lake-71870/
+    user: tpsdave
+    license: Public Domain CC0
+
+
+
+
