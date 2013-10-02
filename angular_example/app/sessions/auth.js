@@ -6,6 +6,7 @@
 // that is served behind nginx
 app.run(function($rootScope){
     $rootScope.userId = 'demo';
+    // $rootScope.userId = '';
     $rootScope.formId = 'FRP53_survey2';
     $rootScope.baseUrl = 'http://formhub.aklogbook.ecotrust.org'; // no trailing slash
 });

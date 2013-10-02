@@ -42,25 +42,20 @@
             <li class="divider"></li>
             <li> <a ng-href="{{$root.baseUrl}}/accounts/logout">logout</a> </li>
           </ul>
+          <ul class="nav pull-right" ng-hide="$root.userId && $root.userId != ''">
+            <li> <a href="">Create an Account</a> </li>
+            <li class="divider"></li>
+            <li> <a ng-href="{{$root.baseUrl}}/accounts/login">login</a> </li>
+          </ul>
         </div>
       </div>
     </div> 
     
-    <div class="container-fluid" ng-view="" ng-hide="$root.userId == '' || !$root.userId">
+    <div class="container-fluid" ng-view="">
         <div class="row">
           <div ng-view="main"></div>
           <div ng-view="permitDetail"></div>
-        </div>
-    </div>
-
-    <div class="container" ng-hide="$root.userId">
-        <br>
-        <div class="span8">
-            <p class="alert alert-info"> 
-                Sign in to access your Alaska Logbook Dashboard
-                <a class="btn btn-primary" style="margin-left: 50px;" 
-                   ng-href="{{$root.baseUrl}}/accounts/login">Get Started</a>
-            </p>
+          <div ng-view="login"></div>
         </div>
     </div>
 
@@ -98,6 +93,7 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/login.js"></script>
     <script src="scripts/services/TestFactory.js"></script>
     <script src="scripts/controllers/permitDetail.js"></script>
     <!-- endbuild -->
