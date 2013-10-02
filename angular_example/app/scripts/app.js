@@ -7,7 +7,7 @@ var app = angular.module('angularjsGruntExampleApp',
   ]
 );
 
-var checkLoggedin = function($$location, $rootScope){ 
+var checkLoggedin = function($location, $rootScope){ 
     //TODO: later tie this to an actual check for auth
     if (!$rootScope.userId || $rootScope.userId == ''){
         $rootScope.message = 'You need to log in.'; 
