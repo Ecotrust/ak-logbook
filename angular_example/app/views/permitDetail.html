@@ -11,8 +11,8 @@
     </ul>
   </div>
 </div>
-<div class="row">
-    <div class="span8">
+<div class="row-fluid">
+    <div class="span4">
         <h4> Observations for Permit <span class="text-info" ng-bind="permitId"></span></h4>
         <table class="table table-bordered table-hover">
             <thead>
@@ -20,7 +20,7 @@
                 <th>permit num</th>
                 <th>date</th>
               </tr>
-            </tbody>
+            </thead>
             <tbody>
               <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
                 <td ng-bind="obs.obs_nm"></td>
@@ -30,7 +30,39 @@
         </table>
     </div>
     <div class="span8">
-        <leaflet height="500px" width="98%" tiles="tiles" markers="markers" center="center"></leaflet>
+        <div class="row-fluid">
+            <div class="span12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Sample ID???</th>
+                        <th>Waterbody Name</th>
+                        <th>Fish Species</th>
+                        <th>Life Stage</th>
+                        <th>Length(mm)</th>
+                        <th>Weight(g)</th>
+                        <th>Photos</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
+                        <td ng-bind="obs.obs_nm"></td>
+                        <td ng-bind="obs.wtr_nm"></td>
+                        <td ng-bind="obs.cm_name"></td>
+                        <td ng-bind="obs.Lf_stg"></td>
+                        <td ng-bind="obs.lngth"></td>
+                        <td ng-bind="obs.wt"></td>
+                        <td><input type="checkbox" ng-checked="obs.pics"/></td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <leaflet height="500px" width="98%" tiles="tiles" markers="markers" center="center"></leaflet>
+            </div>
+        </div>
     </div>
 </div>
 

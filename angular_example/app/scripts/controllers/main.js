@@ -6,14 +6,18 @@ app.controller('MainCtrl', function ($scope, TestFactory) {
   $scope.observations = TestFactory.query();
 
   $scope.uniqueStuff = function(field) {
-        var u = {}, a = [], ob;
-        for(var i = 0, l = $scope.observations.length; i < l; ++i){
-          ob = $scope.observations[i][field];
-          if(!u.hasOwnProperty(ob)) {
-            a.push(ob);
-            u[ob] = 1;
-          }
-        }
-        return a;
-      };
+    var u = {}, a = [], ob;
+    for(var i = 0, l = $scope.observations.length; i < l; ++i){
+      ob = $scope.observations[i][field];
+      if(!u.hasOwnProperty(ob)) {
+        a.push(ob);
+        u[ob] = 1;
+      }
+    }
+    return a;
+  };
+
+  //Display a random carousel image at top of page
+  $('.item').removeClass('active').eq(Math.floor((Math.random() * $('.item').length))).addClass("active");
+
 });
