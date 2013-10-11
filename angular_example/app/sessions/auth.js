@@ -5,8 +5,8 @@
 // see the django template in formhub by the same name for the dynamic version
 // that is served behind nginx
 app.run(function($rootScope){
-    $rootScope.userId = 'demo';
+    $rootScope.userId = 'rhodges';
     // $rootScope.userId = '';
-    $rootScope.formId = 'FRP53_survey2';
+    $rootScope.formId = 'FRP53_survey4';
     $rootScope.baseUrl = 'http://formhub.aklogbook.ecotrust.org'; // no trailing slash
 });

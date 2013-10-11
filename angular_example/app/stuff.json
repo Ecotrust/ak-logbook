@@ -21,6 +21,7 @@
 "formhub/uuid": "80000e2e168f4d0fa412cd0f08eef91b",
 "loc_id": "testert",
 "obs_nm": "test",
+"perm_num": "test",
 "_submission_time": "2013-09-09T22:10:09",
 "_attachments": [],
 "deviceid": "no device properties in enketo",
@@ -47,6 +48,7 @@
 "formhub/uuid": "80000e2e168f4d0fa412cd0f08eef91b",
 "loc_id": "sdfsdf",
 "obs_nm": "sdfsdfd",
+"perm_num": "sdfsdfd",
 "_submission_time": "2013-09-09T22:12:49",
 "_geolocation": [
 "42.2936",

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PermitdetailCtrl', function ($scope, TestFactory, $routeParams) {
+app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParams) {
 
   var permitId = ($routeParams.permitId || "");
   $scope.permitId = permitId;
@@ -12,8 +12,8 @@ app.controller('PermitdetailCtrl', function ($scope, TestFactory, $routeParams) 
         $scope.center.zoom = 8;
     }
   };
-  $scope.observations = TestFactory.query(
-    {'query': '{"obs_nm": "' + permitId + '"}'},
+  $scope.observations = RequestFactory.query(
+    {'query': '{"frp/perm_num": "' + permitId + '"}'},
     function(res) {
         for (var i = res.length - 1; i >= 0; i--) {
             var point = res[i];
@@ -23,12 +23,30 @@ app.controller('PermitdetailCtrl', function ($scope, TestFactory, $routeParams) 
                 $scope.markers[point._id] = {
                     lat: lat,
                     lng: lng,
-                    message: point.obs_nm + "<br>" + point.today,
+                    message: point.perm_num + "<br>" + point.today,
                     focus: false,
                     draggable: false
                 };
             }
         }
+    }
+  );
+
+  $scope.permits = RequestFactory.query(
+    {},
+    function(response) {
+      $scope.permit_attrs = [];
+      for (var i = 0; i < response.length; i++) {
+        if (response[i]['frp/perm_num'] == permitId) {
+          var obj = response[i];
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)){
+              $scope.permit_attrs.push([key, obj[key]]);
+            }
+          }
+          break;
+        }
+      }
     }
   );
 

@@ -17,17 +17,30 @@
         <table class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>permit num</th>
+                <th>Observer</th>
                 <th>date</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
-                <td ng-bind="obs.obs_nm"></td>
-                <td ng-bind="obs.today"></td>
+                <td ng-bind="obs['general/obs_nm']"></td>
+                <td ng-bind="obs['general/obs_date']"></td>
               </tr>
             </tbody>
         </table>
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr ng-repeat="detail in permit_attrs">
+                    <td ng-bind="detail[0]"></td>
+                    <td ng-bind="detail[1]"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row-fluid">
+            <div class="span12">
+                <p ng-bind="obs"></p>
+            </div>
+        </div>
     </div>
     <div class="span8">
         <div class="row-fluid">
@@ -35,7 +48,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>Sample ID???</th>
+                        <th>Sample ID</th>
                         <th>Waterbody Name</th>
                         <th>Fish Species</th>
                         <th>Life Stage</th>
@@ -46,13 +59,13 @@
                     </thead>
                     <tbody>
                       <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
-                        <td ng-bind="obs.obs_nm"></td>
-                        <td ng-bind="obs.wtr_nm"></td>
-                        <td ng-bind="obs.cm_name"></td>
-                        <td ng-bind="obs.Lf_stg"></td>
-                        <td ng-bind="obs.lngth"></td>
-                        <td ng-bind="obs.wt"></td>
-                        <td><input type="checkbox" ng-checked="obs.pics"/></td>
+                        <td ng-bind="obs._id"></td>
+                        <td ng-bind="obs['general/wtr_nm']"></td>
+                        <td ng-bind="obs['general/sps_name']"></td>
+                        <td ng-bind="obs['frp/Lf_stg']"></td>
+                        <td ng-bind="obs['frp/lngth']"></td>
+                        <td ng-bind="obs['frp/wt']"></td>
+                        <td><input type="checkbox" ng-checked="obs['general/pics']"/></td>
                       </tr>
                     </tbody>
                 </table>
