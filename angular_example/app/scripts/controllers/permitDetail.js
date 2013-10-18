@@ -35,13 +35,15 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
   $scope.permits = RequestFactory.query(
     {},
     function(response) {
-      $scope.permit_attrs = [];
+      $scope.permit_attrs = {};
+      $scope.permit_attr_list = [];
       for (var i = 0; i < response.length; i++) {
         if (response[i]['frp/perm_num'] == permitId) {
-          var obj = response[i];
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key)){
-              $scope.permit_attrs.push([key, obj[key]]);
+          $scope.permit_attrs = response[i];
+          // var obj = response[i];
+          for (var key in $scope.permit_attrs) {
+            if ($scope.permit_attrs.hasOwnProperty(key)){
+              $scope.permit_attr_list.push([key, $scope.permit_attrs[key]]);
             }
           }
           break;

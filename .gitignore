@@ -35,3 +35,6 @@ nosetests.xml
 .pydevproject
 .vagrant
 fab_vars.py
+
+*.pem
+*.ppk
