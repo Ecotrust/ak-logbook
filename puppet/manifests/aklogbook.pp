@@ -42,6 +42,9 @@ package { "python-dev": ensure => "latest"}
 package { "python-setuptools": ensure => "latest"}
 package { "python-pip": ensure => "latest"}
 package { "python-numpy": ensure => "latest"}
+package { "python-gdal": ensure=> "latest"}
+package { "gdal-bin": ensure=> "latest"}
+package { "libgdal1-dev": ensure=> "latest"}
 package { "supervisor": ensure => "latest"}
 
 package { "default-jre": ensure => "installed"}
