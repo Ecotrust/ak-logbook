@@ -81,13 +81,6 @@ def update():
     run('cd %(enketo)s && git stash && git fetch && git merge origin/master && git stash pop' % vars)
 
 
-def _install_starspan():
-    run('mkdir -p ~/src && cd ~/src && \
-        if [ ! -d "starspan" ]; then git clone git://github.com/Ecotrust/starspan.git; fi && \
-        cd starspan && \
-        if [ ! `which starspan` ]; then ./configure && make && sudo make install; fi')
-
-
 def _zipdir(path, outzip):
     zip = zipfile.ZipFile('dist.zip', 'w')
     for root, dirs, files in os.walk(path):
@@ -96,28 +89,36 @@ def _zipdir(path, outzip):
     zip.close()
 
 
+def provision():
+    raise Exception("puppet provisioning not recomended at this time due to config changes local to the server.")
+    """
+    run(sudo \
+        facter_user=ubuntu \
+        facter_group=ubuntu \
+        facter_url_base=http://%s \
+        facter_num_cpus=%s \
+        facter_postgres_shared_buffers=%s \
+        facter_shmmax=%s \
+        facter_pgsql_base=/var/lib/postgresql/ puppet apply \
+        --templatedir=/usr/local/apps/land_owner_tools/scripts/puppet/manifests/files \
+        --modulepath=/usr/local/apps/land_owner_tools/scripts/puppet/modules \
+        /usr/local/apps/land_owner_tools/scripts/puppet/manifests/lot.pp
+     % (env.host,
+           num_cpus,
+           postgres_shared_buffers,
+           shmmax
+           )
+    )
+    """
+
 def deploy(buildarg=None):
     """
     Deploy to a staging/production environment
     """
     for s in env.hosts:
-        if 'vagrant' in s:
-            raise Exception("You can't deploy() to local dev, just use `init restart_services`")
+        if 'vagrant' not in s:
+            # only run these if not in local dev mode
+            update()
+            init()
 
-    # Local: build grunt and zip it
-    # if buildarg != 'nobuild':
-    #     try:
-    #         os.remove('dist.zip')
-    #     except OSError:
-    #         pass
-    #     local('cd angular_example && grunt build')
-    #     _zipdir("angular_example/dist", 'dist.zip')
-    # Remote: transfer and unzip
-    # run('cd %(app_dir)s && rm -r dist.zip angular_example/dist/ || echo "nothing to delete"' % vars)
-    # put('dist.zip', vars['app_dir'])
-    # run('cd %(app_dir)s && unzip -o dist.zip' % vars)
-
-    # Normal updates
-    update()
-    init()
     restart_services()

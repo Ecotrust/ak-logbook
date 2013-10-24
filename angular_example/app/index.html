@@ -34,8 +34,10 @@
           <a class="brand" href="#">Alaska Logbook</a>
           <ul class="nav">
             <li class="active"><a href="#">Dashboard</a></li>
+            <!--
             <li><a href="#">Community</a></li>
             <li><a href="#">Profile</a></li>
+            -->
           </ul>
           <ul class="nav pull-right" ng-hide="$root.userId == '' || !$root.userId">
             <li> <p class="text-success navp" ng-bind="$root.userId"</p> </li>
@@ -51,13 +53,7 @@
       </div>
     </div> 
     
-    <div class="container-fluid" ng-view="">
-        <div class="row">
-          <div ng-view="login"></div>
-          <div ng-view="main"></div>
-          <div ng-view="permitDetail"></div>
-        </div>
-    </div>
+    <div class="container-fluid" ng-view=""></div>
 
     <!-- ######################################### -->
 
