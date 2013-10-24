@@ -6,8 +6,16 @@
         <!-- 
         <li><a class="brand" href="#">Title</a></li>
         -->
-        <li><a href="">Export FRP Form</a></li>
-        <li><a href="">AWC Nomination</a></li>
+        <li>
+            <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/frp.xls?permit={{permitId}}">
+                Export FRP Form
+            </a>
+        </li>
+        <li>
+            <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/awc.pdf?permit={{permitId}}">
+                AWC Nomination
+            </a>
+        </li>
     </ul>
   </div>
 </div>

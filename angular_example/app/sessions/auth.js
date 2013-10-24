@@ -7,6 +7,6 @@
 app.run(function($rootScope){
     $rootScope.userId = 'demo';
     // $rootScope.userId = '';
-    $rootScope.formId = 'FRP53_survey4';
-    $rootScope.baseUrl = 'http://formhub.aklogbook.ecotrust.org'; // no trailing slash
+    $rootScope.formId = 'frp_awc_survey';
+    $rootScope.baseUrl = 'http://localhost'; // no trailing slash
 });
