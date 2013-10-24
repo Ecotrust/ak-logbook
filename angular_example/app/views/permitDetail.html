@@ -3,9 +3,6 @@
     <ul class="nav">
         <li><a href="#/"><i class="icon-chevron-left"></i>Back to Permit List</a></li>
         <li class="divider"></li>
-        <!-- 
-        <li><a class="brand" href="#">Title</a></li>
-        -->
         <li>
             <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/frp.xls?permit={{permitId}}">
                 Export FRP Form
@@ -22,22 +19,6 @@
 <div class="row-fluid">
     <div class="span5">
         <h4>Permit <span class="text-info" ng-bind="permitId"></span> Details</h4>
-    <!--
-        <table class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Observer</th>
-                <th>date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
-                <td ng-bind="obs['general/obs_nm']"></td>
-                <td ng-bind="obs['general/obs_date']"></td>
-              </tr>
-            </tbody>
-        </table>
-    -->
         <table class="table table-bordered table-hover">
             <tbody>
                 <tr>
@@ -64,12 +45,6 @@
                     <td>Target Species</td>
                     <td ng-bind="permit_attrs['general/sps_name']"></td>
                 </tr>
-            <!--
-                <tr ng-repeat="detail in permit_attr_list">
-                    <td ng-bind="detail[0]"></td>
-                    <td ng-bind="detail[1]"></td>
-                </tr>
-            -->
             </tbody>
         </table>
         <div class="row-fluid">

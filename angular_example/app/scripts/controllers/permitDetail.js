@@ -23,7 +23,7 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
                 $scope.markers[point._id] = {
                     lat: lat,
                     lng: lng,
-                    message: point.perm_num + "<br>" + point.today,
+                    message: point["frp/perm_num"] + "<br>" + point["general/obs_date"],
                     focus: false,
                     draggable: false
                 };
