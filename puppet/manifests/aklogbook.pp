@@ -55,6 +55,7 @@ package { "libxml2-dev": ensure => "installed"}
 package { "libxslt1-dev": ensure => "installed"} 
 package { "rabbitmq-server": ensure => "installed"}
 package { "mongodb": ensure => installed}
+package { "munin": ensure => installed}
 
 package { "php5-fpm": ensure => installed}
 package { "php5-xsl": ensure => installed}

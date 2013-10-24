@@ -1,5 +1,5 @@
 server {
-    server_name enketo *.enketo;  # TODO puppet template variable
+    server_name *.enketo.aklogbook.ecotrust.org enketo.aklogbook.ecotrust.org;  # TODO puppet template variable
     access_log /var/log/nginx/enketo.access.log;
     error_log /var/log/nginx/enketo.error.log;
 
@@ -29,7 +29,7 @@ server {
 
 server {
     client_max_body_size 20M;
-    server_name localhost;  # TODO puppet template variable
+    server_name aklogbook.ecotrust.org _;  # TODO puppet template variable
     access_log /var/log/nginx/aklogbook.access.log;
     error_log /var/log/nginx/aklogbook.error.log;
 
@@ -41,7 +41,9 @@ server {
     }
 
     location /app/ {
-        alias /usr/local/apps/aklogbook/angular_example/dist/;
+        alias /usr/local/apps/aklogbook/angular_example/app/;
+        sendfile off;
+        expires off;
     }
 
     location / {
@@ -51,5 +53,19 @@ server {
 
     location /static/  {
         alias /usr/local/apps/formhub/static/;
+    }
+
+    location /munin/static/ {
+        alias /etc/munin/static/;
+        expires modified +1w;
+    }
+
+    location /munin/ {
+        auth_basic            "Restricted";
+        # Create the htpasswd file with the htpasswd tool or leave commented out for no pwd
+        # auth_basic_user_file  /etc/nginx/htpasswd;
+
+        alias /var/cache/munin/www/;
+        expires modified +310s;
     }
 }
