@@ -13,7 +13,7 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
     }
   };
   $scope.observations = RequestFactory.query(
-    {'query': '{"frp/perm_num": "' + permitId + '"}'},
+    {'query': '{"general/perm_num": "' + permitId + '"}'},
     function(res) {
         for (var i = res.length - 1; i >= 0; i--) {
             var point = res[i];
@@ -23,7 +23,7 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
                 $scope.markers[point._id] = {
                     lat: lat,
                     lng: lng,
-                    message: point["frp/perm_num"] + "<br>" + point["general/obs_date"],
+                    message: point["general/perm_num"] + "<br>" + point["general/obs_date"],
                     focus: false,
                     draggable: false
                 };
@@ -38,7 +38,7 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
       $scope.permit_attrs = {};
       $scope.permit_attr_list = [];
       for (var i = 0; i < response.length; i++) {
-        if (response[i]['frp/perm_num'] == permitId) {
+        if (response[i]['general/perm_num'] == permitId) {
           $scope.permit_attrs = response[i];
           // var obj = response[i];
           for (var key in $scope.permit_attrs) {
