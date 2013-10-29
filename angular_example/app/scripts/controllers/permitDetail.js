@@ -88,6 +88,7 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
   };
 
   $scope.awcExport = {};
+  $scope.awcObservations = [];
   $scope.awcSubmit = function(){
       var data = $scope.awcExport;
       data.permit = $scope.permitId;
@@ -99,6 +100,15 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
         }
         serializedParams += key + '=' + data[key];
       }
+
+      var obsIds = [];
+      var obs;
+      for (var i = $scope.awcObservations.length - 1; i >= 0; i--) {
+        obs = $scope.awcObservations[i];
+        obsIds.push(obs._uuid);
+      }
+      serializedParams += '&observations=' + obsIds.join(',');
+
       var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/awc.pdf?' + serializedParams;
       window.location.href = url;
   };
