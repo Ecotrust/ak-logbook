@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParams) {
+app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParams, $http, $rootScope) {
 
   var permitId = ($routeParams.permitId || "");
   $scope.permitId = permitId;
@@ -62,6 +62,7 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
   
   $scope.tiles = {
     url: "http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
+    // World_Topo_Map, USA_Topo_Map
     options: {
         opacity: 0.9,
         attribution: "Sources: National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC",
@@ -70,4 +71,36 @@ app.controller('PermitdetailCtrl', function ($scope, RequestFactory, $routeParam
     }
   };
 
-  });
+  $scope.frpExport = {};
+  $scope.frpSubmit = function(){
+      var data = $scope.frpExport;
+      data.permit = $scope.permitId;
+
+      var serializedParams = '';
+      for (var key in data) {
+        if (serializedParams !== '') {
+          serializedParams += '&';
+        }
+        serializedParams += key + '=' + data[key];
+      }
+      var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/frp.xls?' + serializedParams;
+      window.location.href = url;
+  };
+
+  $scope.awcExport = {};
+  $scope.awcSubmit = function(){
+      var data = $scope.awcExport;
+      data.permit = $scope.permitId;
+
+      var serializedParams = '';
+      for (var key in data) {
+        if (serializedParams !== '') {
+          serializedParams += '&';
+        }
+        serializedParams += key + '=' + data[key];
+      }
+      var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/awc.pdf?' + serializedParams;
+      window.location.href = url;
+  };
+
+});

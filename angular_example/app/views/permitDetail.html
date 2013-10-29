@@ -4,12 +4,12 @@
         <li><a href="#/"><i class="icon-chevron-left"></i>Back to Permit List</a></li>
         <li class="divider"></li>
         <li>
-            <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/frp.xls?permit={{permitId}}">
+            <a data-toggle="modal" href="#exportFRPModal">
                 Export FRP Form
             </a>
         </li>
         <li>
-            <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/awc.pdf?permit={{permitId}}">
+            <a data-toggle="modal" href="#exportAWCModal">
                 AWC Nomination
             </a>
         </li>
@@ -96,3 +96,55 @@
     </div>
 </div>
 
+    <div class="modal fade" id="exportFRPModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Export FRP Form (.xls)</h4>
+          </div>
+          <div class="modal-body">
+            <form name="login_form" ng-submit="frpSubmit()" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="biologistContactDate">Date Biologist contacted</label>
+                    <div class="controls">
+                      <input type="date" id="biologistContactDate" ng-model="frpExport.biologistContactDate" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary pull-right" type="submit">
+                    <i class="icon-download icon-white"></i>Download
+                </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exportAWCModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Export AWC Nomination Form (.pdf)</h4>
+          </div>
+          <div class="modal-body">
+            <form name="login_form" ng-submit="awcSubmit()" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="submissionType">Submission Type</label>
+                    <div class="controls">
+                      <select id="submissionType" ng-model="awcExport.submissionType">
+                          <option value="addition" selected>Addition</option>
+                          <option value="deletion">Deletion</option>
+                          <option value="correction">Correction</option>
+                          <option value="backup">Backup</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary pull-right" type="submit">
+                    <i class="icon-download icon-white"></i>Download
+                </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
