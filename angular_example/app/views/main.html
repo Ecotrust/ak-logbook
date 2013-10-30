@@ -8,15 +8,22 @@
   </div>
 </div>
 
-<h4> Permit Numbers </h4>
-
-<div class="dropdown clearfix">
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" 
-      style="display: block; position: static; margin-bottom: 5px; width: 280px;">
-    <li ng-repeat="val in permitInfo('general/perm_num')">
-      <a ng-href="#/permit/{{val}}"ng-bind="val"></p>
-    </li>
-  </ul>
+<div class="row-fluid">
+  <div class="span12 well survey-box">
+    <h3 align="center">Surveys</h3>
+    <div class="row-fluid">
+      <div class="span3 survey-button-box">
+        <button type="button" align="center" class="btn btn-default" onclick="window.location.href='#/permits'">FRP & AWC Nominations</button>
+      </div>
+      <div class="span3 survey-button-box">
+        <button type="button" disabled align="center" class="btn btn-default">Water Quality</button>
+      </div>
+      <div class="span3 survey-button-box">
+      </div>
+      <div class="span3 survey-button-box">
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--  Carousel - consult the Twitter Bootstrap docs at
