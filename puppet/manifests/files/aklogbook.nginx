@@ -49,6 +49,7 @@ server {
     location / {
         uwsgi_pass unix:///var/run/uwsgi/app/aklogbook/socket;
         include uwsgi_params;
+        chunked_transfer_encoding off;
     }
 
     location /static/  {
