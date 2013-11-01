@@ -151,12 +151,14 @@
       </div>
       <div class="modal-body">
         <!-- <img ng-src="'http://aklogbook.ecotrust.org/media/demo/attachments/' + obs['general/pics']"/> -->
-        <img ng-src="{{imgUrl}}"/>
+        <img class="modal-photo" ng-src="{{imgUrl}}"/>
       </div>
-      <div class="pull-right">
-        <button class="btn" data-dismiss="modal">
-            Close
-        </button>
+      <div class="modal-footer">
+        <div class="pull-right">
+          <button class="btn" data-dismiss="modal">
+              Close
+          </button>
+        </div>
       </div>
     </div>
   </div>
