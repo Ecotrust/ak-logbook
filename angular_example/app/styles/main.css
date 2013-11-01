@@ -15642,3 +15642,17 @@ body {
 .survey-button-box button {
   margin: 20px auto;
 }
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \0000378;
+  }
+}
+
+.modal-photo {
+  max-height: 400px;
+}
