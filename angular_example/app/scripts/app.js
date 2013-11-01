@@ -28,10 +28,6 @@ app.config(["$routeProvider", function ($routeProvider) {
         templateUrl: 'views/login.html',
         controller: 'LoginController'
       })
-      .when('/permit/:permitId', {
-        templateUrl: 'views/permitDetail.html',
-        controller: 'PermitdetailCtrl'
-      })
       .when('/permits/:permitId', {
         templateUrl: 'views/permits.html',
         controller: 'PermitsCtrl'

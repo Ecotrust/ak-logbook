@@ -127,4 +127,6 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, $routeParams, $h
       window.location.href = url;
   };
 
+  $scope.imgUrl = "";
+
 });
