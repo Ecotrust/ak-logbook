@@ -69,7 +69,7 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, $routeParams, $h
 
   $scope.getForm = function () {
       $http.get($rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/form.json').success(function (data) {
-          return JSON.parse(data);
+          return data;
       }).error(function (data) {
           if (console) { console.log('Error getting the survey form.'); }  
       });
