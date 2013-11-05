@@ -66,6 +66,17 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, $routeParams, $h
     }
   );
 
+
+  $scope.getForm = function () {
+      $http.get($rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/form.json').success(function (data) {
+          return JSON.parse(data);
+      }).error(function (data) {
+          if (console) { console.log('Error getting the survey form.'); }  
+      });
+  };
+
+  $scope.form = $scope.getForm();
+
   $scope.center = {
     lat: 60.095,
     lng: -153.823,
@@ -128,5 +139,22 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, $routeParams, $h
   };
 
   $scope.imgUrl = "";
+  $scope.focusObservation = {};
+
+  /* Function readify
+   * Takes: 1 javascript object "object"
+   * Returns: 1 javascript object "readableObject"
+   * Purpose: add additional fields to an object so UI can reference the keys as well as values.
+   */
+  $scope.readify = function(object) {
+    var readableObject = {};
+    for (var property in object) {
+      readableObject[property] = {
+        name: property,
+        value: object[property]
+      };
+    }
+    return readableObject;
+  }
 
 });
