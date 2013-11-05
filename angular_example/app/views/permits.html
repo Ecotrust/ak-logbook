@@ -171,16 +171,25 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Observation {{focusObservation._id.value}} Details</h4>
+        <h4 class="modal-title">Observation {{focusObservation.id}} Details</h4>
       </div>
       <div class="modal-body">
         <!-- <img ng-src="'http://aklogbook.ecotrust.org/media/demo/attachments/' + obs['general/pics']"/> -->
-        <table>
-          <tr><th>field</th><th>value</th></tr>
-          <tr ng-repeat="field in focusObservation">
-            <td>{{field.name}}</td><td>{{field.value}}</td>
-          </tr>
-        </table>
+        <h3>General</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.general.value">
+            <div class="span4">{{field.label}}:</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h3>FRP Information</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.frp.value">
+            <div class="span4">{{field.label}}:</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h3>AWC Nomination Information</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.awc.value">
+            <div class="span4">{{field.label}}:</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
       </div>
       <div class="modal-footer">
         <div class="pull-right">

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PermitsCtrl', function ($scope, RequestFactory, $routeParams, $http, $rootScope) {
+app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFactory, $routeParams, $http, $rootScope) {
 
   $scope.permits = RequestFactory.query();
 
@@ -54,7 +54,6 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, $routeParams, $h
       for (var i = 0; i < response.length; i++) {
         if (response[i]['general/perm_num'] == permitId) {
           $scope.permit_attrs = response[i];
-          // var obj = response[i];
           for (var key in $scope.permit_attrs) {
             if ($scope.permit_attrs.hasOwnProperty(key)){
               $scope.permit_attr_list.push([key, $scope.permit_attrs[key]]);
@@ -66,16 +65,7 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, $routeParams, $h
     }
   );
 
-
-  $scope.getForm = function () {
-      $http.get($rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/form.json').success(function (data) {
-          return data;
-      }).error(function (data) {
-          if (console) { console.log('Error getting the survey form.'); }  
-      });
-  };
-
-  $scope.form = $scope.getForm();
+  $scope.form = FormRequestFactory.query();
 
   $scope.center = {
     lat: 60.095,
@@ -144,14 +134,25 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, $routeParams, $h
   /* Function readify
    * Takes: 1 javascript object "object"
    * Returns: 1 javascript object "readableObject"
-   * Purpose: add additional fields to an object so UI can reference the keys as well as values.
+   * Purpose: add additional fields to an object so UI can reference the keys, labels, and values.
    */
   $scope.readify = function(object) {
-    var readableObject = {};
-    for (var property in object) {
-      readableObject[property] = {
-        name: property,
-        value: object[property]
+    var readableObject = {id: object._id};
+
+    for (var i = 0; i < $scope.form.children.length; i++) {
+      var newCategory = {}
+      for (var j = 0; j < $scope.form.children[i].children.length; j++) {
+        var formKey = $scope.form.children[i].name + '/' + $scope.form.children[i].children[j].name;
+        if (object.hasOwnProperty(formKey)) {
+          newCategory[$scope.form.children[i].children[j].name] = {
+            label: $scope.form.children[i].children[j].label,
+            value: object[formKey]
+          }
+        }
+      }
+      readableObject[$scope.form.children[i].name] = {
+        label: $scope.form.children[i].label,
+        value: newCategory
       };
     }
     return readableObject;
