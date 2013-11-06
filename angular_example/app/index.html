@@ -62,17 +62,18 @@
             <h4 class="modal-title">Record an Observation</h4>
           </div>
           <div class="modal-body">
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#iosCollapse">
+
+            <div class="accordion" id="deviceAccordion">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#deviceAccordion" href="#iosCollapse">
+                    <h4>
                       iPhone, iPad, or other iOS Device
-                    </a>
-                  </h4>
+                    </h4>
+                  </a>
                 </div>
-                <div id="iosCollapse" class="panel-collapse collapse">
-                  <div class="panel-body">
+                <div id="iosCollapse" class="accordion-body collapse">
+                  <div class="accordion-inner">
                     <p>Navigate your mobile device to the following url:</p>
                     <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
                       {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
@@ -81,27 +82,25 @@
                   </div>
                 </div>
               </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#androidCollapse">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#deviceAccordion" href="#androidCollapse">
+                    <h4>
                       Android Device
-                    </a>
-                  </h4>
+                    </h4>
+                  </a>
                 </div>
-                <div id="androidCollapse" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    <div class="panel-group inner-accordion" id="accordion">
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#ODKCollapse">
-                              Open Data Kit (recommended)
-                            </a>
-                          </h5>
+                <div id="androidCollapse" class="accordion-body collapse in">
+                  <div class="accordion-inner">
+                    <div class="accordion inner-accordion" id="androidAccordion">
+                      <div class="accordion-group">
+                        <div class="accordion-heading">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#androidAccordion" href="#ODKCollapse">
+                            Open Data Kit (recommended)
+                          </a>
                         </div>
-                        <div id="ODKCollapse" class="panel-collapse collapse in">
-                          <div class="panel-body">
+                        <div id="ODKCollapse" class="accordion-body collapse">
+                          <div class="accordion-inner">
                             <p>Download and install ODK-Collect from the Google Play store.</p>
                             <p>
                               The url of this web application <strong>{{$root.baseUrl}}/{{$root.userId}}</strong>
@@ -113,16 +112,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#enketoCollapse">
-                              Web App
-                            </a>
-                          </h5>
+                      <div class="accordion-group">
+                        <div class="accordion-heading">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#androidAccordion" href="#enketoCollapse">
+                            Web App
+                          </a>
                         </div>
-                        <div id="enketoCollapse" class="panel-collapse collapse">
-                          <div class="panel-body">
+                        <div id="enketoCollapse" class="accordion-body collapse">
+                          <div class="accordion-inner">
                             <p>Navigate your mobile device to the following url:</p>
                             <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
                               {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
@@ -135,16 +132,16 @@
                   </div>
                 </div>
               </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#otherCollapse">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#deviceAccordion" href="#otherDeviceCollapse">
+                    <h4>
                       Other mobile device
-                    </a>
-                  </h4>
+                    </h4>
+                  </a>
                 </div>
-                <div id="otherCollapse" class="panel-collapse collapse">
-                  <div class="panel-body">
+                <div id="otherDeviceCollapse" class="accordion-body collapse">
+                  <div class="accordion-inner">
                     <p>Navigate your mobile device to the following url:</p>
                     <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
                       {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
@@ -154,6 +151,7 @@
                 </div>
               </div>
             </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

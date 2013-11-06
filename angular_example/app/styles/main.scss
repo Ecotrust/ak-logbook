@@ -75,8 +75,16 @@ body {
     margin: 20px auto;
 }
 
+.accordion-toggle {
+    background: #F5F5F5;
+}
+
 .inner-accordion {
     margin-left: 20px;
+}
+
+.inner-accordion .accordion-toggle {
+    background: #F5F5FF
 }
 
 .modal-photo {
