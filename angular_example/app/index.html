@@ -62,10 +62,98 @@
             <h4 class="modal-title">Record an Observation</h4>
           </div>
           <div class="modal-body">
-            <p>Navigate your mobile device to the following url:</p>
-            <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
-              {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
-            </a>
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#iosCollapse">
+                      iPhone, iPad, or other iOS Device
+                    </a>
+                  </h4>
+                </div>
+                <div id="iosCollapse" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>Navigate your mobile device to the following url:</p>
+                    <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
+                      {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
+                    </a>
+                    <p>Save page to your homescreen</p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#androidCollapse">
+                      Android Device
+                    </a>
+                  </h4>
+                </div>
+                <div id="androidCollapse" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="panel-group inner-accordion" id="accordion">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#ODKCollapse">
+                              Open Data Kit (recommended)
+                            </a>
+                          </h5>
+                        </div>
+                        <div id="ODKCollapse" class="panel-collapse collapse in">
+                          <div class="panel-body">
+                            <p>Download and install ODK-Collect from the Google Play store.</p>
+                            <p>
+                              The url of this web application <strong>{{$root.baseUrl}}/{{$root.userId}}</strong>
+                              must be given to ODK Collect before it will get forms from and
+                              submit data to formhub. In Collect's Main Menu, press the Menu
+                              button. Select Server Preferences, then Server. Enter
+                              <strong>{{$root.baseUrl}}/{{$root.userId}}</strong> as the server.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#enketoCollapse">
+                              Web App
+                            </a>
+                          </h5>
+                        </div>
+                        <div id="enketoCollapse" class="panel-collapse collapse">
+                          <div class="panel-body">
+                            <p>Navigate your mobile device to the following url:</p>
+                            <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
+                              {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
+                            </a>
+                            <p>Save page to your homescreen</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#otherCollapse">
+                      Other mobile device
+                    </a>
+                  </h4>
+                </div>
+                <div id="otherCollapse" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>Navigate your mobile device to the following url:</p>
+                    <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
+                      {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
+                    </a>
+                    <p>Save page to your homescreen</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

@@ -15653,6 +15653,20 @@ body {
   }
 }
 
+.inner-accordion {
+  margin-left: 20px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \0000382;
+  }
+}
+
 .modal-photo {
   max-height: 400px;
 }
