@@ -15946,3 +15946,17 @@ tbody {
 #obs-details-table {
   margin-bottom: 0 !important;
 }
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003181;
+  }
+}
+
+#surveyModal {
+  display: none;
+}
