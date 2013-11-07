@@ -15709,6 +15709,24 @@ body {
   }
 }
 
+.permit-list {
+  display: block;
+  position: static;
+  margin-bottom: 5px;
+  width: 100%;
+  min-width: 73px !important;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003102;
+  }
+}
+
 tbody {
   display: table-row-group;
   overflow-y: auto;
@@ -15720,12 +15738,12 @@ tbody {
   }
 
   line {
-    font-family: \0000399;
+    font-family: \00003107;
   }
 }
 
 .fixed-table-container {
-  max-height: 400px;
+  max-height: 250px;
   position: relative;
   padding-top: 30px;
   margin-bottom: 20px;
@@ -15740,7 +15758,7 @@ tbody {
   }
 
   line {
-    font-family: \00003109;
+    font-family: \00003117;
   }
 }
 
@@ -15755,14 +15773,14 @@ tbody {
   }
 
   line {
-    font-family: \00003114;
+    font-family: \00003122;
   }
 }
 
 .fixed-table-container-inner {
   overflow-x: hidden;
   overflow-y: auto;
-  max-height: 400px;
+  max-height: 250px;
   /*Must match .fixed-table-container*/
   border-top: 1px solid #DDDDDD;
 }
@@ -15773,7 +15791,7 @@ tbody {
   }
 
   line {
-    font-family: \00003121;
+    font-family: \00003129;
   }
 }
 
@@ -15791,7 +15809,7 @@ tbody {
   }
 
   line {
-    font-family: \00003129;
+    font-family: \00003137;
   }
 }
 
@@ -15805,7 +15823,7 @@ tbody {
   }
 
   line {
-    font-family: \00003133;
+    font-family: \00003141;
   }
 }
 
@@ -15825,7 +15843,7 @@ tbody {
   }
 
   line {
-    font-family: \00003143;
+    font-family: \00003151;
   }
 }
 
@@ -15840,7 +15858,7 @@ tbody {
   }
 
   line {
-    font-family: \00003148;
+    font-family: \00003156;
   }
 }
 
@@ -15854,7 +15872,7 @@ tbody {
   }
 
   line {
-    font-family: \00003152;
+    font-family: \00003160;
   }
 }
 
@@ -15869,7 +15887,7 @@ tbody {
   }
 
   line {
-    font-family: \00003157;
+    font-family: \00003165;
   }
 }
 
@@ -15883,7 +15901,7 @@ tbody {
   }
 
   line {
-    font-family: \00003161;
+    font-family: \00003169;
   }
 }
 
@@ -15897,7 +15915,7 @@ tbody {
   }
 
   line {
-    font-family: \00003165;
+    font-family: \00003173;
   }
 }
 
@@ -15911,7 +15929,7 @@ tbody {
   }
 
   line {
-    font-family: \00003169;
+    font-family: \00003177;
   }
 }
 
@@ -15925,7 +15943,7 @@ tbody {
   }
 
   line {
-    font-family: \00003173;
+    font-family: \00003181;
   }
 }
 
@@ -15939,7 +15957,7 @@ tbody {
   }
 
   line {
-    font-family: \00003177;
+    font-family: \00003185;
   }
 }
 
@@ -15953,7 +15971,7 @@ tbody {
   }
 
   line {
-    font-family: \00003181;
+    font-family: \00003189;
   }
 }
 

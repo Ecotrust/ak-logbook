@@ -22,8 +22,7 @@
         <h4> Permit Numbers </h4>
 
         <div class="dropdown clearfix">
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" 
-              style="display: block; position: static; margin-bottom: 5px; width: 280px;">
+          <ul class="dropdown-menu permit-list" role="menu" aria-labelledby="dropdownMenu">
             <li ng-repeat="val in permitInfo('general/perm_num')">
               <a ng-href="#/permits/{{val}}"ng-bind="val"></a>
             </li>

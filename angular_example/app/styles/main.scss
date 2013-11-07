@@ -91,13 +91,21 @@ body {
     max-height: 400px;
 }
 
+.permit-list {
+    display: block; 
+    position: static; 
+    margin-bottom: 5px; 
+    width: 100%;
+    min-width: 73px !important;
+}
+
 tbody {
     display: table-row-group;
     overflow-y: auto;
 }
 
 .fixed-table-container {
-    max-height: 400px;
+    max-height: 250px;
     position: relative;
     padding-top: 30px;
     margin-bottom: 20px;
@@ -114,7 +122,7 @@ tbody {
 .fixed-table-container-inner {
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 400px;          /*Must match .fixed-table-container*/
+    max-height: 250px;          /*Must match .fixed-table-container*/
     border-top: 1px solid #DDDDDD;
 }
 
