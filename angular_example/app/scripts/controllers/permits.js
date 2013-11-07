@@ -26,6 +26,24 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
         $scope.center.zoom = 8;
     }
   };
+
+  $scope.markerInfo = function(point) {
+    var bubble_str = "";
+    if (point.hasOwnProperty('_id')) {
+      bubble_str = bubble_str + "Observation: " + point["_id"] + "<br/>";
+    }
+    if (point.hasOwnProperty('general/obs_nm')) {
+      bubble_str = bubble_str + point["general/obs_nm"] + "<br/>";
+    }
+    if (point.hasOwnProperty('general/wtr_nm')) {
+      bubble_str = bubble_str + point["general/wtr_nm"] + "<br/>";
+    }
+    if (point.hasOwnProperty('general/obs_date')) {
+      bubble_str = bubble_str + point["general/obs_date"];
+    }
+    return bubble_str;
+  }
+
   $scope.observations = RequestFactory.query(
     {'query': '{"general/perm_num": "' + permitId + '"}'},
     function(res) {
@@ -37,7 +55,7 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
                 $scope.markers[point._id] = {
                     lat: lat,
                     lng: lng,
-                    message: point["general/perm_num"] + "<br>" + point["general/obs_date"],
+                    message: $scope.markerInfo(point),
                     focus: false,
                     draggable: false
                 };
