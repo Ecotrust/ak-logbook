@@ -158,4 +158,8 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     return readableObject;
   }
 
+  $scope.getImgUrl = function(observation) {
+    return '/media/' + $rootScope.userId + '/attachments/' + observation['general/pics'];
+  }
+
 });

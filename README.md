@@ -26,6 +26,15 @@ cd ak-logbook
 # Make sure the host is not running anything on port 80 or 81!
 vagrant up
 fab dev init
+fab dev restart_services
+fab dev manage:createsuperuser
+
+# Log in to your VM
+sudo vim /etc/nginx/sites-enabled/aklogbook
+    # Edit the server names to be: 
+        # *.enketo enketo;
+        # localhost _;
+sudo service nginx reload
 ```
 
 ## DNS Madness
