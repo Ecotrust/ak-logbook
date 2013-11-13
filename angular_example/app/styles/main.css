@@ -15749,7 +15749,7 @@ tbody {
   margin-bottom: 20px;
   border-radius: 4px;
   border: 1px solid #DDDDDD;
-  min-width: 445px;
+  min-width: 485px;
 }
 
 @media -sass-debug-info {
@@ -15933,6 +15933,20 @@ tbody {
   }
 }
 
+.fixed-table-container td.photo {
+  min-width: 42px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003181;
+  }
+}
+
 .fixed-table-container td.length {
   min-width: 70px;
 }
@@ -15943,7 +15957,7 @@ tbody {
   }
 
   line {
-    font-family: \00003181;
+    font-family: \00003185;
   }
 }
 
@@ -15957,7 +15971,21 @@ tbody {
   }
 
   line {
-    font-family: \00003185;
+    font-family: \00003189;
+  }
+}
+
+.fixed-table-container td.edit {
+  min-width: 42px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003193;
   }
 }
 
@@ -15971,7 +15999,7 @@ tbody {
   }
 
   line {
-    font-family: \00003189;
+    font-family: \00003197;
   }
 }
 

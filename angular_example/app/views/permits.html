@@ -46,6 +46,7 @@
                           <th><div class="th-inner">Species</div></th>
                           <th><div class="th-inner">Photos</div></th>
                           <th><div class="th-inner">Details</div></th>
+                          <th><div class="th-inner">Edit</div></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -54,8 +55,11 @@
                           <td ng-bind="obs['general/obs_date']" class="date"></td>
                           <td ng-bind="obs['general/wtr_nm']" class="water-name"></td>
                           <td ng-bind="obs['general/sps_name']" class="species"></td>
-                          <td><button class="btn" ng-show="obs['general/pics']" data-toggle="modal" href="#photoModal" ng-click="$parent.imgUrl = getImgUrl(obs);">View</button></td>
+                          <td class="photo"><button class="btn" ng-show="obs['general/pics']" data-toggle="modal" href="#photoModal" ng-click="$parent.imgUrl = getImgUrl(obs);">View</button></td>
                           <td><button class="btn" data-toggle="modal" href="#detailsModal" ng-click="$parent.focusObservation = readify(obs);">View</button></td>
+                          <td class="edit">
+                              <a href="/{{$root.userId}}/forms/frp_awc_survey/edit-data/{{obs._id}}" class="btn">Edit</a>
+                          </td>
                         </tr>
                       </tbody>
                   </table>

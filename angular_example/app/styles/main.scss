@@ -111,7 +111,7 @@ tbody {
     margin-bottom: 20px;
     border-radius: 4px;
     border: 1px solid #DDDDDD;
-    min-width: 445px;
+    min-width: 485px;
 }
 
 .header-background {
@@ -174,12 +174,20 @@ tbody {
     min-width: 50px;
 }
 
+.fixed-table-container td.photo {
+    min-width: 42px;
+}
+
 .fixed-table-container td.length {
     min-width: 70px;
 }
 
 .fixed-table-container td.weight {
     min-width: 60px;
+}
+
+.fixed-table-container td.edit {
+    min-width: 42px;
 }
 
 #obs-details-table {
