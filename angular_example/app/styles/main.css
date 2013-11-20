@@ -13137,7 +13137,7 @@ input[type="submit"].btn.btn-mini {
 .modal.fade {
   -webkit-transition: opacity 0.3s linear, top 0.3s ease-out;
   transition: opacity 0.3s linear, top 0.3s ease-out;
-  top: -25%;
+  top: -50%;
 }
 
 @media -sass-debug-info {

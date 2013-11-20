@@ -87,6 +87,10 @@ body {
     background: #F5F5FF
 }
 
+.modal.fade {
+    top: -50% !important;
+}
+
 .modal-photo {
     max-height: 400px;
 }
