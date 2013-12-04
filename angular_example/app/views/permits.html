@@ -127,7 +127,7 @@
             <div class="control-group">
                 <label class="control-label" for="submissionType">Select Observations to include (<em>Ctl-click to select up to 5</em>)</label>
                 <div class="controls">
-                    <select multiple="multiple" ng-model="awcObservations" ng-options="observation_label(obs) for obs in observations"></select>
+                    <select id="select-observations" multiple="multiple" ng-model="awcObservations" ng-options="observation_label(obs) for obs in observations"></select>
                 </div>
             </div>
             <div class="pull-right">
