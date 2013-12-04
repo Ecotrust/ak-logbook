@@ -176,6 +176,10 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     return readableObject;
   }
 
+  $scope.observation_label = function(object) {
+    return object['general/obs_date'] + " - " + object['general/wtr_nm'] + " - " + object['general/sps_name']
+  }
+
   $scope.getImgUrl = function(observation) {
     return '/media/' + $rootScope.userId + '/attachments/' + observation['general/pics'];
   }
