@@ -184,4 +184,8 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     return '/media/' + $rootScope.userId + '/attachments/' + observation['general/pics'];
   }
 
+  $(document).on('click mouseover', '[rel="tooltip"]', function (e) {
+    $(e.target).tooltip('show');
+  });
+
 });

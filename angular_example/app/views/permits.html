@@ -58,7 +58,7 @@
                           <td class="photo"><button class="btn" ng-show="obs['general/pics']" data-toggle="modal" href="#photoModal" ng-click="$parent.imgUrl = getImgUrl(obs);">View</button></td>
                           <td><button class="btn" data-toggle="modal" href="#detailsModal" ng-click="$parent.focusObservation = readify(obs);">View</button></td>
                           <td class="edit">
-                              <a href="/{{$root.userId}}/forms/frp_awc_survey/edit-data/{{obs._id}}" class="btn">Edit</a>
+                              <a href="/{{$root.userId}}/forms/frp_awc_survey/edit-data/{{obs._id}}" class="btn">Edit</a> <i ng-show="obs['general2/req_edit']" class="icon-info-sign" rel="tooltip" data-placement="top" title data-original-title="Requires editing"></i>
                           </td>
                         </tr>
                       </tbody>
