@@ -215,3 +215,14 @@ tbody {
 #mobile-survey-modal-header {
     visibility: hidden;
 }
+
+.modal-footer .logout-btn {
+    visibility: hidden;
+    width: 0;
+}
+
+.modal-footer .close-btn {
+    visibility: visible;
+    width: 30%;
+    min-width: 75px;
+}

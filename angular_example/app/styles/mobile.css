@@ -1,6 +1,6 @@
 #surveyModal {
     visibility: visible;
-    display: block;
+    display: block !important;
     height: 100%;
     width: 100%;
     top: 0;
@@ -17,8 +17,15 @@
     height: 15px;
 }
 
-.modal-footer {
+.modal-footer .close-btn {
     visibility: hidden;
+    width: 0;
+}
+
+.modal-footer .logout-btn {
+    visibility: visible;
+    width: 30%;
+    min-width: 75px;
 }
 
 .survey-box {
