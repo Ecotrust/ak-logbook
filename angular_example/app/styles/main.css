@@ -16012,3 +16012,13 @@ tbody {
 #select-observations {
     width: 100%;
 }
+
+#desktop-survey-modal-header {
+    visibility: visible;
+    left: 20px;
+    position: absolute;
+}
+
+#mobile-survey-modal-header {
+    visibility: hidden;
+}

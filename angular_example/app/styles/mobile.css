@@ -8,3 +8,42 @@
     z-index: 1050;
     opacity: 1;
 }
+
+.close {
+    visibility: hidden;
+}
+
+.modal-title {
+    height: 15px;
+}
+
+.modal-footer {
+    visibility: hidden;
+}
+
+.survey-box {
+    visibility: hidden;
+}
+
+#page-content {
+    visibility: hidden;
+    height: 0;
+}
+
+.navbar {
+    visibility: hidden;
+}
+
+.row-fluid {
+    height: 0;
+}
+
+#desktop-survey-modal-header {
+    visibility: hidden;
+}
+
+#mobile-survey-modal-header {
+    visibility: visible;
+    left: 20px;
+    position: absolute;
+}
