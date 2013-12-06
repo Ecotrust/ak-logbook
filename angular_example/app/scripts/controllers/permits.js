@@ -49,9 +49,21 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     function(res) {
         for (var i = res.length - 1; i >= 0; i--) {
             var point = res[i];
-            var lat = parseFloat(point._geolocation[0]);
-            var lng = parseFloat(point._geolocation[1]);
-            if (lat && lng) {
+            var lat, lng;
+            if (point["frp/obs_loc"] != undefined) {
+              lat = parseFloat(point["frp/obs_loc"].split(' ')[0]);
+              lng = parseFloat(point["frp/obs_loc"].split(' ')[1]);
+            } else if (point["frp/obs_lat"] != undefined && point["frp/obs_lon"] != undefined) {
+              lat = parseFloat(point["frp/obs_lat"]);
+              lng = parseFloat(point["frp/obs_lon"]);
+            } else if (point["awc/wtr_st"] != undefined) {
+              lat = parseFloat(point["awc/wtr_st"].split(' ')[0]);
+              lng = parseFloat(point["awc/wtr_st"].split(' ')[1]);
+            } else if (point["awc/wtr_end"] != undefined) {
+              lat = parseFloat(point["awc/wtr_end"].split(' ')[0]);
+              lng = parseFloat(point["awc/wtr_end"].split(' ')[1]);
+            }
+            if (lat != undefined && lng != undefined) {
                 $scope.markers[point._id] = {
                     lat: lat,
                     lng: lng,
