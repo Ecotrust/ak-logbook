@@ -3,6 +3,7 @@
 app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFactory, $routeParams, $http, $rootScope) {
 
   $scope.permits = RequestFactory.query();
+  $scope.form_name = 'frp_awc_survey'
 
   $scope.permitInfo = function(field) {
     var perm_ids = {}, permits = [], permit;

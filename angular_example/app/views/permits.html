@@ -13,6 +13,26 @@
                 AWC Nomination
             </a>
         </li>
+        <li>
+            <div class="btn-group">
+              <button class="btn dropdown-toggle" data-toggle="dropdown">
+                Download 
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/{{$root.userId}}/forms/{{form_name}}/data.csv">CSV</a>
+                </li>
+                <li>
+                  <a href="/{{$root.userId}}/forms/{{form_name}}/data.xls">XLS</a>
+                </li>
+                <li>
+                  <a href="/{{$root.userId}}/forms/{{form_name}}/data.kml">KML</a>
+                </li>
+              </ul>
+            </div>
+        </li>
+
     </ul>
   </div>
 </div>
@@ -59,7 +79,7 @@
                             <div class="btn-toolbar">
                               <div class="btn-group">
                                 <button class="btn btn-small" data-toggle="modal" href="#detailsModal" ng-click="$parent.focusObservation = readify(obs);">View</button>
-                                <a href="/{{$root.userId}}/forms/frp_awc_survey/edit-data/{{obs._id}}" class="btn edit btn-small">Edit <i ng-show="obs['general2/req_edit']" class="icon-info-sign" rel="tooltip" data-placement="top" title data-original-title="Requires editing"></i></a>
+                                <a href="/{{$root.userId}}/forms/{{form_name}}/edit-data/{{obs._id}}" class="btn edit btn-small">Edit <i ng-show="obs['general2/req_edit']" class="icon-info-sign" rel="tooltip" data-placement="top" title data-original-title="Requires editing"></i></a>
                                 <button class="btn btn-small" data-toggle="modal" href="#deleteModal" ng-click="$parent.focusObservation = readify(obs);">Delete</button>
                               </div>
                             </div>
@@ -245,7 +265,7 @@
           <button class="btn btn-primary" data-dismiss="modal">
               No
           </button>
-          <button data-dismiss="modal" ng-click="deleteData(focusObservation.id,$root.userId,'frp_awc_survey');" class="btn btn-danger">
+          <button data-dismiss="modal" ng-click="deleteData(focusObservation.id,$root.userId,{{form_name}});" class="btn btn-danger">
               Yes
           </button>
         </div>
