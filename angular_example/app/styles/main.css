@@ -16038,8 +16038,12 @@ tbody {
     float: none;
     padding: 10px 15px 10px;
     color: #777777;
-    text-decoration: none;
+    text-decoration: none !important;
     text-shadow: 0 1px 0 white;
     display: block;
     cursor: pointer;
+}
+
+.navbar-dropdown:hover {
+  color: #333333;
 }
