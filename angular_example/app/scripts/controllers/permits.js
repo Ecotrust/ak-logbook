@@ -188,6 +188,21 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     return readableObject;
   }
 
+  $scope.deleteData = function(idToDelete, username, surveyname) {
+    var deleteAPIUrl = '/' + username + '/forms/' + surveyname + '/delete_data';
+      $.post(deleteAPIUrl, {
+          'id': idToDelete,
+          'csrfmiddlewaretoken': $scope.csrftoken
+      })
+            .success(function(data){
+              window.location.href = '/app/#/permits';
+            })
+            .error(function(){
+               alert("Delete failed.");
+          });
+        idToDelete = null;
+  }
+
   $scope.observation_label = function(object) {
     return object['general/obs_date'] + " - " + object['general/wtr_nm'] + " - " + object['general/sps_name']
   }
@@ -199,5 +214,24 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
   $(document).on('click mouseover', '[rel="tooltip"]', function (e) {
     $(e.target).tooltip('show');
   });
+
+  //Stolen from django docs: https://docs.djangoproject.com/en/dev/ref/contrib/csrf/#ajax
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+  }
+
+  $scope.csrftoken = getCookie('csrftoken');
 
 });

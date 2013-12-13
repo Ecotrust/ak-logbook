@@ -47,6 +47,7 @@
                           <th><div class="th-inner">Photos</div></th>
                           <th><div class="th-inner">Details</div></th>
                           <th><div class="th-inner">Edit</div></th>
+                          <th><div class="th-inner">Delete</div></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -60,6 +61,7 @@
                           <td class="edit">
                               <a href="/{{$root.userId}}/forms/frp_awc_survey/edit-data/{{obs._id}}" class="btn">Edit</a> <i ng-show="obs['general2/req_edit']" class="icon-info-sign" rel="tooltip" data-placement="top" title data-original-title="Requires editing"></i>
                           </td>
+                          <td><button class="btn" data-toggle="modal" href="#deleteModal" ng-click="$parent.focusObservation = readify(obs);"><i class="icon-remove" rel="tooltip" data-placement="top" title data-original-title="Delete observation"></i></button></td>
                         </tr>
                       </tbody>
                   </table>
@@ -199,6 +201,50 @@
         <div class="pull-right">
           <button class="btn" data-dismiss="modal">
               Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Delete Observation {{focusObservation.id}}</h4>
+      </div>
+      <div class="modal-body">
+        <h3>Are you sure you want to delete this observation?<h3>
+          <h4>General</h4>
+          <div class="row-fluid" ng-repeat="field in focusObservation.general.value">
+            <div class="span4">{{field.label}}:</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h4>FRP Information</h4>
+          <div class="row-fluid" ng-repeat="field in focusObservation.frp.value">
+            <div class="span4">{{field.label}}:</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h4>AWC Nomination Information</h4>
+          <div class="row-fluid" ng-repeat="field in focusObservation.awc.value">
+            <div class="span4">{{field.label}}:</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h4>Supplemental</h4>
+          <div class="row-fluid" ng-repeat="field in focusObservation.general2.value">
+            <div class="span4">{{field.label}}:</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="pull-right">
+          <button class="btn btn-primary" data-dismiss="modal">
+              No
+          </button>
+          <button data-dismiss="modal" ng-click="deleteData(focusObservation.id,$root.userId,'frp_awc_survey');" class="btn btn-danger">
+              Yes
           </button>
         </div>
       </div>
