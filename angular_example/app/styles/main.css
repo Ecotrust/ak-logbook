@@ -16047,3 +16047,7 @@ tbody {
 .navbar-dropdown:hover {
   color: #333333;
 }
+
+.action-buttons {
+  margin: 0 !important;
+}

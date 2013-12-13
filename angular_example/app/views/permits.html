@@ -73,7 +73,7 @@
                           <td ng-bind="obs['general/sps_name']" class="species"></td>
                           <td class="photo"><button class="btn" ng-show="obs['general/pics']" data-toggle="modal" href="#photoModal" ng-click="$parent.imgUrl = getImgUrl(obs);">View</button></td>
                           <td>
-                            <div class="btn-toolbar">
+                            <div class="btn-toolbar action-buttons">
                               <div class="btn-group">
                                 <button class="btn btn-small" data-toggle="modal" href="#detailsModal" ng-click="$parent.focusObservation = readify(obs);">View</button>
                                 <a href="/{{$root.userId}}/forms/{{form_name}}/edit-data/{{obs._id}}" class="btn edit btn-small">Edit <i ng-show="obs['general2/req_edit']" class="icon-info-sign" rel="tooltip" data-placement="top" title data-original-title="Requires editing"></i></a>
