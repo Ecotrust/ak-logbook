@@ -45,9 +45,7 @@
                           <th><div class="th-inner">Waterbody</div></th>
                           <th><div class="th-inner">Species</div></th>
                           <th><div class="th-inner">Photos</div></th>
-                          <th><div class="th-inner">Details</div></th>
-                          <th><div class="th-inner">Edit</div></th>
-                          <th><div class="th-inner">Delete</div></th>
+                          <th><div class="th-inner">Action</div></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -57,11 +55,15 @@
                           <td ng-bind="obs['general/wtr_nm']" class="water-name"></td>
                           <td ng-bind="obs['general/sps_name']" class="species"></td>
                           <td class="photo"><button class="btn" ng-show="obs['general/pics']" data-toggle="modal" href="#photoModal" ng-click="$parent.imgUrl = getImgUrl(obs);">View</button></td>
-                          <td><button class="btn" data-toggle="modal" href="#detailsModal" ng-click="$parent.focusObservation = readify(obs);">View</button></td>
-                          <td class="edit">
-                              <a href="/{{$root.userId}}/forms/frp_awc_survey/edit-data/{{obs._id}}" class="btn">Edit</a> <i ng-show="obs['general2/req_edit']" class="icon-info-sign" rel="tooltip" data-placement="top" title data-original-title="Requires editing"></i>
+                          <td>
+                            <div class="btn-toolbar">
+                              <div class="btn-group">
+                                <button class="btn btn-small" data-toggle="modal" href="#detailsModal" ng-click="$parent.focusObservation = readify(obs);">View</button>
+                                <a href="/{{$root.userId}}/forms/frp_awc_survey/edit-data/{{obs._id}}" class="btn edit btn-small">Edit <i ng-show="obs['general2/req_edit']" class="icon-info-sign" rel="tooltip" data-placement="top" title data-original-title="Requires editing"></i></a>
+                                <button class="btn btn-small" data-toggle="modal" href="#deleteModal" ng-click="$parent.focusObservation = readify(obs);">Delete</button>
+                              </div>
+                            </div>
                           </td>
-                          <td><button class="btn" data-toggle="modal" href="#deleteModal" ng-click="$parent.focusObservation = readify(obs);"><i class="icon-remove" rel="tooltip" data-placement="top" title data-original-title="Delete observation"></i></button></td>
                         </tr>
                       </tbody>
                   </table>
