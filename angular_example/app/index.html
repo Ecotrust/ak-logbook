@@ -37,7 +37,7 @@
         <div class="container-fluid">
           <a class="brand" href="#">Alaska Logbook</a>
           <ul class="nav btn-broup" id="page-nav">
-            <li ng-class="{ active: isActive('/')}"><a href="#">Dashboard</a></li>
+            <li ng-class="{ active: (isActive('/') || isActive('/permits'))}"><a href="#">Dashboard</a></li>
             <li><a data-toggle="modal" href="#surveyModal">Survey</a></li>
             <li ng-class="{ active: isActive('/help')}"><a href="/app/#/help">Help</a></li>
             <!--
