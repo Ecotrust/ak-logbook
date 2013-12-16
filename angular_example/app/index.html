@@ -32,14 +32,14 @@
     <![endif]-->
 
     <!-- ######################################### -->
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top" ng-controller="headCtrl">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="brand" href="#">Alaska Logbook</a>
-          <ul class="nav">
-            <li class="active"><a href="#">Dashboard</a></li>
+          <ul class="nav btn-broup" id="page-nav">
+            <li ng-class="{ active: isActive('/')}"><a href="#">Dashboard</a></li>
             <li><a data-toggle="modal" href="#surveyModal">Survey</a></li>
-            <li><a href="/app/#/help">Help</a></li>
+            <li ng-class="{ active: isActive('/help')}"><a href="/app/#/help">Help</a></li>
             <!--
             <li><a href="#">Community</a></li>
             <li><a href="#">Profile</a></li>
@@ -201,6 +201,7 @@
     <script src="sessions/auth.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/controllers/header.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/services/RequestFactory.js"></script>
