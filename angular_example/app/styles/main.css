@@ -16051,3 +16051,15 @@ tbody {
 .action-buttons {
   margin: 0 !important;
 }
+
+#help-contents {
+  margin: 15px 15px 25px 15px;
+}
+
+.help-well {
+  padding: 50px;
+}
+
+.help-well h5 {
+  padding-top: 40px;
+}

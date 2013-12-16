@@ -36,6 +36,10 @@ app.config(["$routeProvider", function ($routeProvider) {
         templateUrl: 'views/permits.html',
         controller: 'PermitsCtrl'
       })
+      .when('/help', {
+        templateUrl: 'views/help.html',
+        controller: 'helpCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
