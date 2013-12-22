@@ -57,17 +57,19 @@
                   <table class="table table-bordered table-hover" id="obs-details-table">
                       <thead>
                         <tr>
-                          <th class="first"><div class="th-inner">ID</div></th>
-                          <th><div class="th-inner">Date</div></th>
+                          <!-- <th class="first"><div class="th-inner">ID</div></th> -->
+                          <th class="first"><div class="th-inner">Date</div></th>
                           <th><div class="th-inner">Waterbody</div></th>
                           <th><div class="th-inner">Species</div></th>
                           <th><div class="th-inner">Photos</div></th>
                           <th><div class="th-inner">Action</div></th>
+                          <th><div class="th-inner">FRP</div></th>
+                          <th><div class="th-inner">AWC</div></th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
-                          <td ng-bind="obs._id" class="sample-id"></td>
+                          <!-- <td ng-bind="obs._id" class="sample-id"></td> -->
                           <td ng-bind="obs['general/obs_date']" class="date"></td>
                           <td ng-bind="obs['general/wtr_nm']" class="water-name"></td>
                           <td ng-bind="obs['general/sps_name']" class="species"></td>
@@ -81,6 +83,8 @@
                               </div>
                             </div>
                           </td>
+                          <td><i ng-show="obs['frp/show_frp'] == 'TRUE'" class="icon-ok" rel="tooltip" /></td>
+                          <td><i ng-show="obs['awc/show_awc'] == 'TRUE'" class="icon-ok" rel="tooltip" /></td>
                         </tr>
                       </tbody>
                   </table>
