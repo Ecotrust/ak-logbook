@@ -71,8 +71,8 @@ package {'iotop': ensure => "latest"}
 
 class {'nullmailer': adminaddr => "forestplanner@ecotrust.org", remoterelay => "mail.ecotrust.org"}
 
-class { 'mysql::server':
-  config_hash => { 'root_password' => 'enketo' }
+class { '::mysql::server':
+  root_password => 'enketo'
 }
 
 mysql::db { 'enketo':
