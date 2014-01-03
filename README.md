@@ -43,9 +43,15 @@ Enketo uses subdomains extensively to identify unique ids of forms. Unfortunatel
 this means that local `123xyz.localhost` doesn't resolve properly. Plus you need to
 differentiate enketo vs. formhub virtual hosts ...
 
-Edit the `/etc/hosts` file on both the host and virtual server.
+Edit the `/etc/hosts` file on both the host and virtual server to point 'enketo' and your version of '123xyz.enketo' to localhost.
+You will also need to add an entry for '123xyz-0.enketo' and point it at localhost for editing forms to work.
 
 * On Windows hosts edit as adminstrator `C:\Windows\System32\drivers\etc\hosts`
+
+## Spatial Data
+For AWC Nominations, you will need the shapefiles for ADFG regions and quads. 
+Ecotrusters can find this data in the shared project folder: gis/projects/projects2013/AKLogbook/spatial_data/
+Copy all of the files to formhub/logbook/data/
 
 ## Requirements
 * node (with npm)
@@ -60,3 +66,15 @@ Edit the `/etc/hosts` file on both the host and virtual server.
     cd app\bower_components\leaftlet
     npm install -g jake
     npm install
+
+## Other URLS - Formhub, Enketo, and OpenRosa
+If  you want to allow enketo to work with other formhub urls, here’s how you would configure it:
+ 
+// in enketo/Code_Igniter/application/config/enketo.php
+ 
+$config['openrosa_domains_allowed'] = array(
+        //array('url' => '(www\.|dev\.)?formhub\.org\/?(martijnr|formhub_u)?', 'api_token' => 'abc123'),
+-    array('url' => 'localhost', 'api_token' => 'abc123'),
+    array('url' => 'aklogbook.ecotrust.org', 'api_token' => 'abc123'),
++    array('url' => 'formhub.aklogbook.ecotrust.org', 'api_token' => 'abc123'),
+);

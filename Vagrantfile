@@ -4,8 +4,8 @@
 Vagrant::Config.run do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  config.vm.forward_port 80, 80
-  config.vm.forward_port 81, 81
+  config.vm.forward_port 80, 8080
+  config.vm.forward_port 81, 8081
   config.vm.forward_port 8000, 8000
 
   config.vm.share_folder "v-app", "/usr/local/apps/aklogbook", "./"

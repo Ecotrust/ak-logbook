@@ -1,7 +1,18 @@
 'use strict';
 
 app.factory('RequestFactory', function ($resource, $rootScope) {
-  var apiUrl = $rootScope.baseUrl + '/:userId/forms/:formId/api';
+
+  //We must take extra steps to retain port numbers due to this issue: https://github.com/angular/angular.js/issues/1243
+  //    This is fixed (supposedly) in newer versions of Angular, but not the one we're using.
+
+  var base = $rootScope.baseUrl;
+  var baseLen = base.split(':').length
+
+  if (baseLen > 1 && !isNaN(base.split(':')[baseLen-1])) {
+    base = base.split(':').slice(0, baseLen-1).join(':') + '\\:' + base.split(':')[baseLen-1];
+  }
+
+  var apiUrl = base + '/:userId/forms/:formId/api';
 
   var api = $resource(apiUrl,
     // The $rootScope variables are defined in sessions/auth.js 
