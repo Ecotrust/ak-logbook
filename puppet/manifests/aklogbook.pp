@@ -69,7 +69,7 @@ package {'htop': ensure => "latest"}
 package {'sysstat': ensure => "latest"}
 package {'iotop': ensure => "latest"}
 
-class {'nullmailer': adminaddr => "forestplanner@ecotrust.org", remoterelay => "mail.ecotrust.org"}
+class {'nullmailer': adminaddr => "aklogbook@ecotrust.org", remoterelay => "mail.ecotrust.org"}
 
 class { '::mysql::server':
   root_password => 'enketo'
