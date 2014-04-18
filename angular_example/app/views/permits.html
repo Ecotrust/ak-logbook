@@ -83,8 +83,8 @@
                               </div>
                             </div>
                           </td>
-                          <td><i ng-show="obs['frp/show_frp'] == 'TRUE'" class="icon-ok" rel="tooltip" /></td>
-                          <td><i ng-show="obs['awc/show_awc'] == 'TRUE'" class="icon-ok" rel="tooltip" /></td>
+                          <td><i ng-show="obs['frp/show_frp'] == 'TRUE'" class="icon-ok" rel="tooltip" /><i ng-show="obs['frp/show_frp'] == 'FALSE'" class="icon-remove" rel="tooltip" /><i ng-show="obs['frp/show_frp'] == null" class="icon-remove" rel="tooltip" /></td>
+                          <td><i ng-show="obs['awc/show_awc'] == 'TRUE'" class="icon-ok" rel="tooltip" /><i ng-show="obs['awc/show_awc'] == 'FALSE'" class="icon-remove" rel="tooltip" /><i ng-show="obs['awc/show_awc'] == null" class="icon-remove" rel="tooltip" /></td>
                         </tr>
                       </tbody>
                   </table>
