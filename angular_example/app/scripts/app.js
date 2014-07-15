@@ -36,6 +36,14 @@ app.config(["$routeProvider", function ($routeProvider) {
         templateUrl: 'views/permits.html',
         controller: 'PermitsCtrl'
       })
+      .when('/yukon_water/:surveyId', {
+        templateUrl: 'views/yukon_water.html',
+        controller: 'YukonWaterCtrl'
+      })
+      .when('/yukon_water', {
+        templateUrl: 'views/yukon_water.html',
+        controller: 'YukonWaterCtrl'
+      })
       .when('/help', {
         templateUrl: 'views/help.html',
         controller: 'helpCtrl'

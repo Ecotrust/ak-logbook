@@ -1,25 +1,25 @@
 'use strict';
 
-app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFactory, $routeParams, $http, $rootScope) {
+app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, YukonWaterFormRequestFactory, $routeParams, $http, $rootScope) {
 
-  $rootScope.formId = 'frp_awc_survey';
-  $scope.form_name = 'frp_awc_survey'
-  $scope.permits = RequestFactory.query();
+  $scope.form_name = 'WisdomOfTheElders2';
+  $rootScope.formId = 'WisdomOfTheElders2';
+  $scope.surveys = YukonWaterRequestFactory.query();
 
-  $scope.permitInfo = function(field) {
-    var perm_ids = {}, permits = [], permit;
-    for(var i = 0, l = $scope.permits.length; i < l; ++i){
-      permit = $scope.permits[i][field];
-      if(!perm_ids.hasOwnProperty(permit)) {
-        permits.push(permit);
-        perm_ids[permit] = 1;
+  $scope.surveyInfo = function(field) {
+    var survey_ids = {}, surveys = [], survey;
+    for(var i = 0, l = $scope.surveys.length; i < l; ++i){
+      survey = $scope.surveys[i][field];
+      if(!survey_ids.hasOwnProperty(survey)) {
+        surveys.push(survey);
+        survey_ids[survey] = 1;
       }
     }
-    return permits;
+    return surveys;
   };
 
-  var permitId = ($routeParams.permitId || $scope.permits[0]);
-  $scope.permitId = permitId;
+  var surveyId = ($routeParams.surveyId || $scope.surveys[0]);
+  $scope.surveyId = surveyId;
   $scope.selectObs = function(id) {
     var marker = $scope.markers[id];
     if (marker) {
@@ -34,36 +34,30 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     if (point.hasOwnProperty('_id')) {
       bubble_str = bubble_str + "Observation: " + point["_id"] + "<br/>";
     }
-    if (point.hasOwnProperty('general/obs_nm')) {
-      bubble_str = bubble_str + point["general/obs_nm"] + "<br/>";
-    }
-    if (point.hasOwnProperty('general/wtr_nm')) {
-      bubble_str = bubble_str + point["general/wtr_nm"] + "<br/>";
-    }
-    if (point.hasOwnProperty('general/obs_date')) {
-      bubble_str = bubble_str + point["general/obs_date"];
-    }
+    // if (point.hasOwnProperty('general/obs_nm')) {
+    //   bubble_str = bubble_str + point["general/obs_nm"] + "<br/>";
+    // }
+    // if (point.hasOwnProperty('general/wtr_nm')) {
+    //   bubble_str = bubble_str + point["general/wtr_nm"] + "<br/>";
+    // }
+    // if (point.hasOwnProperty('general/obs_date')) {
+    //   bubble_str = bubble_str + point["general/obs_date"];
+    // }
     return bubble_str;
   }
 
-  $scope.observations = RequestFactory.query(
-    {'query': '{"general/perm_num": "' + permitId + '"}'},
+  $scope.observations = YukonWaterRequestFactory.query(
+    {'query': '{"_submission_time": "' + surveyId + '"}'},
     function(res) {
         for (var i = res.length - 1; i >= 0; i--) {
             var point = res[i];
             var lat, lng;
-            if (point["frp/obs_loc"] != undefined) {
-              lat = parseFloat(point["frp/obs_loc"].split(' ')[0]);
-              lng = parseFloat(point["frp/obs_loc"].split(' ')[1]);
-            } else if (point["frp/obs_lat"] != undefined && point["frp/obs_lon"] != undefined) {
-              lat = parseFloat(point["frp/obs_lat"]);
-              lng = parseFloat(point["frp/obs_lon"]);
-            } else if (point["awc/wtr_st"] != undefined) {
-              lat = parseFloat(point["awc/wtr_st"].split(' ')[0]);
-              lng = parseFloat(point["awc/wtr_st"].split(' ')[1]);
-            } else if (point["awc/wtr_end"] != undefined) {
-              lat = parseFloat(point["awc/wtr_end"].split(' ')[0]);
-              lng = parseFloat(point["awc/wtr_end"].split(' ')[1]);
+            if (point["site/loc_gps"] != undefined) {
+              lat = parseFloat(point["site/loc_gps"].split(' ')[0]);
+              lng = parseFloat(point["site/loc_gps"].split(' ')[1]);
+            } else if (point["site/_loc_gps_latitude"] != undefined && point["site/_loc_gps_longitude"] != undefined) {
+              lat = parseFloat(point["site/_loc_gps_latitude"]);
+              lng = parseFloat(point["site/_loc_gps_longitude"]);
             }
             if (lat != undefined && lng != undefined) {
                 $scope.markers[point._id] = {
@@ -78,17 +72,17 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     }
   );
 
-  $scope.permits = RequestFactory.query(
+  $scope.surveys = YukonWaterRequestFactory.query(
     {},
     function(response) {
-      $scope.permit_attrs = {};
-      $scope.permit_attr_list = [];
+      $scope.survey_attrs = {};
+      $scope.survey_attr_list = [];
       for (var i = 0; i < response.length; i++) {
-        if (response[i]['general/perm_num'] == permitId) {
-          $scope.permit_attrs = response[i];
-          for (var key in $scope.permit_attrs) {
-            if ($scope.permit_attrs.hasOwnProperty(key)){
-              $scope.permit_attr_list.push([key, $scope.permit_attrs[key]]);
+        if (response[i]['_submission_time'] == surveyId) {
+          $scope.survey_attrs = response[i];
+          for (var key in $scope.survey_attrs) {
+            if ($scope.survey_attrs.hasOwnProperty(key)){
+              $scope.survey_attr_list.push([key, $scope.survey_attrs[key]]);
             }
           }
           break;
@@ -97,7 +91,7 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     }
   );
 
-  $scope.form = FormRequestFactory.query();
+  $scope.form = YukonWaterFormRequestFactory.query();
 
   $scope.center = {
     lat: 60.095,
@@ -118,47 +112,47 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     }
   };
 
-  $scope.frpExport = {};
-  $scope.frpSubmit = function(){
-      var data = $scope.frpExport;
-      data.permit = $scope.permitId;
+  // $scope.frpExport = {};
+  // $scope.frpSubmit = function(){
+  //     var data = $scope.frpExport;
+  //     data.survey = $scope.surveyId;
 
-      var serializedParams = '';
-      for (var key in data) {
-        if (serializedParams !== '') {
-          serializedParams += '&';
-        }
-        serializedParams += key + '=' + data[key];
-      }
-      var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/frp.xls?' + serializedParams;
-      window.location.href = url;
-  };
+  //     var serializedParams = '';
+  //     for (var key in data) {
+  //       if (serializedParams !== '') {
+  //         serializedParams += '&';
+  //       }
+  //       serializedParams += key + '=' + data[key];
+  //     }
+  //     var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/frp.xls?' + serializedParams;
+  //     window.location.href = url;
+  // };
 
-  $scope.awcExport = {};
-  $scope.awcObservations = [];
-  $scope.awcSubmit = function(){
-      var data = $scope.awcExport;
-      data.permit = $scope.permitId;
+  // $scope.awcExport = {};
+  // $scope.awcObservations = [];
+  // $scope.awcSubmit = function(){
+  //     var data = $scope.awcExport;
+  //     data.survey = $scope.surveyId;
 
-      var serializedParams = '';
-      for (var key in data) {
-        if (serializedParams !== '') {
-          serializedParams += '&';
-        }
-        serializedParams += key + '=' + data[key];
-      }
+  //     var serializedParams = '';
+  //     for (var key in data) {
+  //       if (serializedParams !== '') {
+  //         serializedParams += '&';
+  //       }
+  //       serializedParams += key + '=' + data[key];
+  //     }
 
-      var obsIds = [];
-      var obs;
-      for (var i = $scope.awcObservations.length - 1; i >= 0; i--) {
-        obs = $scope.awcObservations[i];
-        obsIds.push(obs._uuid);
-      }
-      serializedParams += '&observations=' + obsIds.join(',');
+  //     var obsIds = [];
+  //     var obs;
+  //     for (var i = $scope.awcObservations.length - 1; i >= 0; i--) {
+  //       obs = $scope.awcObservations[i];
+  //       obsIds.push(obs._uuid);
+  //     }
+  //     serializedParams += '&observations=' + obsIds.join(',');
 
-      var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/awc.pdf?' + serializedParams;
-      window.location.href = url;
-  };
+  //     var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/awc.pdf?' + serializedParams;
+  //     window.location.href = url;
+  // };
 
   $scope.imgUrl = "";
   $scope.focusObservation = {};
@@ -197,7 +191,7 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
           'csrfmiddlewaretoken': $scope.csrftoken
       })
             .success(function(data){
-              window.location.href = '/app/#/permits';
+              window.location.href = '/app/#/yukon_water';
             })
             .error(function(){
                alert("Delete failed.");
@@ -206,12 +200,12 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
   }
 
   $scope.observation_label = function(object) {
-    return object['general/obs_date'] + " - " + object['general/wtr_nm'] + " - " + object['general/sps_name']
+    return object['site/date'] + " - " + object['site/site_name'] + " - " + object['site/loc_city'] + ", " + ['site/loc_state']
   }
 
-  $scope.getImgUrl = function(observation) {
-    return '/media/' + $rootScope.userId + '/attachments/' + observation['general/pics'];
-  }
+  // $scope.getImgUrl = function(observation) {
+    // return '/media/' + $rootScope.userId + '/attachments/' + observation['general/pics'];
+  // }
 
   $(document).on('click mouseover', '[rel="tooltip"]', function (e) {
     $(e.target).tooltip('show');
