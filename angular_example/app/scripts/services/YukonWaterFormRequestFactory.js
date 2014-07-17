@@ -5,7 +5,7 @@ app.factory('YukonWaterFormRequestFactory', function ($resource, $rootScope) {
   //We must take extra steps to retain port numbers due to this issue: https://github.com/angular/angular.js/issues/1243
   //    This is fixed (supposedly) in newer versions of Angular, but not the one we're using.
 
-  var formId = 'WisdomOfTheElders2';
+  var formId = 'Logbook_wqm';
   var base = $rootScope.baseUrl;
   var baseLen = base.split(':').length
 

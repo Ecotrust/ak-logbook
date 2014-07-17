@@ -2,8 +2,8 @@
 
 app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, YukonWaterFormRequestFactory, $routeParams, $http, $rootScope) {
 
-  $scope.form_name = 'WisdomOfTheElders2';
-  $rootScope.formId = 'WisdomOfTheElders2';
+  $scope.form_name = 'Logbook_wqm';
+  $rootScope.formId = 'Logbook_wqm';
   $scope.surveys = YukonWaterRequestFactory.query();
 
   $scope.surveyInfo = function(field) {
@@ -52,12 +52,9 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
         for (var i = res.length - 1; i >= 0; i--) {
             var point = res[i];
             var lat, lng;
-            if (point["site/loc_gps"] != undefined) {
-              lat = parseFloat(point["site/loc_gps"].split(' ')[0]);
-              lng = parseFloat(point["site/loc_gps"].split(' ')[1]);
-            } else if (point["site/_loc_gps_latitude"] != undefined && point["site/_loc_gps_longitude"] != undefined) {
-              lat = parseFloat(point["site/_loc_gps_latitude"]);
-              lng = parseFloat(point["site/_loc_gps_longitude"]);
+            if (point["field/gps_loc"] != undefined) {
+              lat = parseFloat(point["field/gps_loc"].split(' ')[0]);
+              lng = parseFloat(point["field/gps_loc"].split(' ')[1]);
             }
             if (lat != undefined && lng != undefined) {
                 $scope.markers[point._id] = {
