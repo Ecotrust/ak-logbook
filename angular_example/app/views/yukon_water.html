@@ -22,7 +22,7 @@
         <div class="row-fluid">
             <div class="span12">
               <h4>Observations for Site <span class="text-info" ng-bind="siteId"></span></h4>
-              <div class="fixed-table-container">
+              <div class="fixed-table-container ftc-tall-head">
                 <div class="header-background"></div>
                 <div class="fixed-table-container-inner">
 
@@ -47,13 +47,13 @@
                           <td ng-bind="obs['general/date']+ '\n' + obs['general/st_time']" class="date"></td>
                           <td ng-bind="obs['general/wtr_bdy']" class="water-name"></td>
                           <td ng-bind="obs['field/ph']" class="ph"></td>
-                          <td ng-bind="obs['field/dssvld_o_perc']" class="species"></td>
-                          <td ng-bind="obs['field/dssvld_o']" class="species"></td>
-                          <td ng-bind="obs['field/conduct']" class="water-name"></td>
-                          <td ng-bind="obs['field/air_temp']" class="species"></td>
-                          <td ng-bind="obs['field/wtr_temp']" class="species"></td>
+                          <td ng-bind="obs['field/dssvld_o_perc']" class="diss-o"></td>
+                          <td ng-bind="obs['field/dssvld_o']" class="diss-o"></td>
+                          <td ng-bind="obs['field/conduct']" class="conductivity"></td>
+                          <td ng-bind="obs['field/air_temp']" class="temp"></td>
+                          <td ng-bind="obs['field/wtr_temp']" class="temp"></td>
                           <!-- <td class="photo"><button class="btn btn-small" ng-show="obs['general/pics']" data-toggle="modal" href="#photoModal" ng-click="$parent.imgUrl = getImgUrl(obs);">View</button></td> -->
-                          <td>
+                          <td class="action">
                             <div class="btn-toolbar action-buttons">
                               <div class="btn-group">
                                 <button class="btn btn-small" data-toggle="modal" href="#detailsModal" ng-click="$parent.focusObservation = readify(obs);">View</button>

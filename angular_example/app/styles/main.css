@@ -15747,11 +15747,25 @@ tbody {
 .fixed-table-container {
   max-height: 250px;
   position: relative;
-  padding-top: 60px;
+  padding-top: 30px;
   margin-bottom: 20px;
   border-radius: 4px;
   border: 1px solid #DDDDDD;
   min-width: 485px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003117;
+  }
+}
+
+.ftc-tall-head {
+  padding-top: 60px !important;
 }
 
 @media -sass-debug-info {
@@ -15935,8 +15949,78 @@ tbody {
   }
 }
 
+.fixed-table-container td.photo {
+  min-width: 42px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003181;
+  }
+}
+
 .fixed-table-container td.ph {
-  min-width: 30px;
+  min-width: 20px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003181;
+  }
+}
+
+.fixed-table-container td.diss-o {
+  min-width: 60px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003181;
+  }
+}
+
+.fixed-table-container td.conductivity {
+  min-width: 80px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003181;
+  }
+}
+
+.fixed-table-container td.temp {
+  min-width: 35px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003181;
+  }
+}
+
+.fixed-table-container td.action {
+  min-width: 162px;
 }
 
 @media -sass-debug-info {
