@@ -4,22 +4,22 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
 
   $scope.form_name = 'Logbook_wqm';
   $rootScope.formId = 'Logbook_wqm';
-  $scope.surveys = YukonWaterRequestFactory.query();
+  $scope.sites = YukonWaterRequestFactory.query();
 
-  $scope.surveyInfo = function(field) {
-    var survey_ids = {}, surveys = [], survey;
-    for(var i = 0, l = $scope.surveys.length; i < l; ++i){
-      survey = $scope.surveys[i][field];
-      if(!survey_ids.hasOwnProperty(survey)) {
-        surveys.push(survey);
-        survey_ids[survey] = 1;
+  $scope.siteInfo = function(field) {
+    var site_ids = {}, sites = [], site;
+    for(var i = 0, l = $scope.sites.length; i < l; ++i){
+      site = $scope.sites[i][field];
+      if(!site_ids.hasOwnProperty(site)) {
+        sites.push(site);
+        site_ids[site] = 1;
       }
     }
-    return surveys;
+    return sites;
   };
 
-  var surveyId = ($routeParams.surveyId || $scope.surveys[0]);
-  $scope.surveyId = surveyId;
+  var siteId = ($routeParams.siteId || $scope.sites[0]);
+  $scope.siteId = siteId;
   $scope.selectObs = function(id) {
     var marker = $scope.markers[id];
     if (marker) {
@@ -47,7 +47,7 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
   }
 
   $scope.observations = YukonWaterRequestFactory.query(
-    {'query': '{"_submission_time": "' + surveyId + '"}'},
+    {'query': '{"general/site_id": "' + siteId + '"}'},
     function(res) {
         for (var i = res.length - 1; i >= 0; i--) {
             var point = res[i];
@@ -69,17 +69,17 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
     }
   );
 
-  $scope.surveys = YukonWaterRequestFactory.query(
+  $scope.sites = YukonWaterRequestFactory.query(
     {},
     function(response) {
-      $scope.survey_attrs = {};
-      $scope.survey_attr_list = [];
+      $scope.site_attrs = {};
+      $scope.site_attr_list = [];
       for (var i = 0; i < response.length; i++) {
-        if (response[i]['_submission_time'] == surveyId) {
-          $scope.survey_attrs = response[i];
-          for (var key in $scope.survey_attrs) {
-            if ($scope.survey_attrs.hasOwnProperty(key)){
-              $scope.survey_attr_list.push([key, $scope.survey_attrs[key]]);
+        if (response[i]['general/site_id'] == siteId) {
+          $scope.site_attrs = response[i];
+          for (var key in $scope.site_attrs) {
+            if ($scope.site_attrs.hasOwnProperty(key)){
+              $scope.site_attr_list.push([key, $scope.site_attrs[key]]);
             }
           }
           break;
@@ -181,8 +181,8 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
     return readableObject;
   }
 
-  $scope.deleteData = function(idToDelete, username, surveyname) {
-    var deleteAPIUrl = '/' + username + '/forms/' + surveyname + '/delete_data';
+  $scope.deleteData = function(idToDelete, username, sitename) {
+    var deleteAPIUrl = '/' + username + '/forms/' + sitename + '/delete_data';
       $.post(deleteAPIUrl, {
           'id': idToDelete,
           'csrfmiddlewaretoken': $scope.csrftoken

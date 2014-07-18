@@ -36,7 +36,7 @@ app.config(["$routeProvider", function ($routeProvider) {
         templateUrl: 'views/permits.html',
         controller: 'PermitsCtrl'
       })
-      .when('/yukon_water/:surveyId', {
+      .when('/yukon_water/:siteId', {
         templateUrl: 'views/yukon_water.html',
         controller: 'YukonWaterCtrl'
       })

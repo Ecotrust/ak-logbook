@@ -8,20 +8,20 @@
 <div class="row-fluid">
     <div class="span3">
 
-        <h4> Survey Numbers </h4>
+        <h4> SIte Numbers </h4>
 
         <div class="dropdown clearfix">
           <ul class="dropdown-menu permit-list" role="menu" aria-labelledby="dropdownMenu">
-            <li ng-repeat="val in surveyInfo('_submission_time')">
+            <li ng-repeat="val in siteInfo('general/site_id')">
               <a ng-href="#/yukon_water/{{val}}" ng-bind="val"></a>
             </li>
           </ul>
         </div>
     </div>
-    <div class="span9" ng-show="surveyId">
+    <div class="span9" ng-show="siteId">
         <div class="row-fluid">
             <div class="span12">
-              <h4>Observations for Survey <span class="text-info" ng-bind="surveyId"></span></h4>
+              <h4>Observations for Site <span class="text-info" ng-bind="siteId"></span></h4>
               <div class="fixed-table-container">
                 <div class="header-background"></div>
                 <div class="fixed-table-container-inner">
