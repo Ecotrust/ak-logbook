@@ -15747,7 +15747,7 @@ tbody {
 .fixed-table-container {
   max-height: 250px;
   position: relative;
-  padding-top: 30px;
+  padding-top: 60px;
   margin-bottom: 20px;
   border-radius: 4px;
   border: 1px solid #DDDDDD;
@@ -15935,8 +15935,8 @@ tbody {
   }
 }
 
-.fixed-table-container td.photo {
-  min-width: 42px;
+.fixed-table-container td.ph {
+  min-width: 30px;
 }
 
 @media -sass-debug-info {

@@ -30,25 +30,28 @@
                       <thead>
                         <tr>
                           <!-- <th class="first"><div class="th-inner">ID</div></th> -->
-                          <th class="first"><div class="th-inner">Date</div></th>
-                          <!--
-                          <th><div class="th-inner">Waterbody</div></th>
-                          <th><div class="th-inner">Species</div></th>
-                          <th><div class="th-inner">Photos</div></th>
-                          <th><div class="th-inner">Action</div></th>
-                          <th><div class="th-inner">FRP</div></th>
-                          <th><div class="th-inner">AWC</div></th>
-                          -->
+                          <th class="first"><div class="th-inner"><br />Date</div></th>
+                          <th><div class="th-inner"><br />Waterbody</div></th>
+                          <th><div class="th-inner"><br />pH</div></th>
+                          <th><div class="th-inner">Dissolved<br />O<sub>2</sub> (%)</div></th>
+                          <th><div class="th-inner">Dissolved<br />O<sub>2</sub></div></th>
+                          <th><div class="th-inner"><br />Conductivity</div></th>
+                          <th><div class="th-inner">Air<br />Temp</div></th>
+                          <th><div class="th-inner">Water<br />Temp</div></th>
+                          <th><div class="th-inner"><br />Action</div></th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
                           <!-- <td ng-bind="obs._id" class="sample-id"></td> -->
-                          <td ng-bind="obs['site/date']" class="date"></td>
-                          <!--
-                          <td ng-bind="obs['general/wtr_nm']" class="water-name"></td>
-                          <td ng-bind="obs['general/sps_name']" class="species"></td>
-                          -->
+                          <td ng-bind="obs['general/date']+ '\n' + obs['general/st_time']" class="date"></td>
+                          <td ng-bind="obs['general/wtr_bdy']" class="water-name"></td>
+                          <td ng-bind="obs['field/ph']" class="ph"></td>
+                          <td ng-bind="obs['field/dssvld_o_perc']" class="species"></td>
+                          <td ng-bind="obs['field/dssvld_o']" class="species"></td>
+                          <td ng-bind="obs['field/conduct']" class="water-name"></td>
+                          <td ng-bind="obs['field/air_temp']" class="species"></td>
+                          <td ng-bind="obs['field/wtr_temp']" class="species"></td>
                           <!-- <td class="photo"><button class="btn btn-small" ng-show="obs['general/pics']" data-toggle="modal" href="#photoModal" ng-click="$parent.imgUrl = getImgUrl(obs);">View</button></td> -->
                           <td>
                             <div class="btn-toolbar action-buttons">
@@ -184,22 +187,32 @@
         <!-- <img ng-src="'http://aklogbook.ecotrust.org/media/demo/attachments/' + obs['general/pics']"/> -->
         <h3>General</h3>
           <div class="row-fluid" ng-repeat="field in focusObservation.general.value">
-            <div class="span4">{{field.label}}:</div>
+            <div class="span4">{{field.label}}</div>
             <div class="span8">{{field.value}}</div>
           </div>
-        <h3>FRP Information</h3>
-          <div class="row-fluid" ng-repeat="field in focusObservation.frp.value">
-            <div class="span4">{{field.label}}:</div>
+        <h3>pH Calibration</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.ph_calibration.value">
+            <div class="span4">{{field.label}}</div>
             <div class="span8">{{field.value}}</div>
           </div>
-        <h3>AWC Nomination Information</h3>
-          <div class="row-fluid" ng-repeat="field in focusObservation.awc.value">
-            <div class="span4">{{field.label}}:</div>
+        <h3>Dissolved Oxygen Calibration</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.do_calibration.value">
+            <div class="span4">{{field.label}}</div>
             <div class="span8">{{field.value}}</div>
           </div>
-        <h3>Supplemental</h3>
-          <div class="row-fluid" ng-repeat="field in focusObservation.general2.value">
-            <div class="span4">{{field.label}}:</div>
+        <h3>Conductivity Calibration</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.con_calibration.value">
+            <div class="span4">{{field.label}}</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h3>Field Data</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.field.value">
+            <div class="span4">{{field.label}}</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h3>Field Conditions</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.field_cond.value">
+            <div class="span4">{{field.label}}</div>
             <div class="span8">{{field.value}}</div>
           </div>
       </div>
@@ -223,24 +236,34 @@
       </div>
       <div class="modal-body">
         <h3>Are you sure you want to delete this observation?<h3>
-          <h4>General</h4>
+          <h3>General</h3>
           <div class="row-fluid" ng-repeat="field in focusObservation.general.value">
-            <div class="span4">{{field.label}}:</div>
+            <div class="span4">{{field.label}}</div>
             <div class="span8">{{field.value}}</div>
           </div>
-        <h4>FRP Information</h4>
-          <div class="row-fluid" ng-repeat="field in focusObservation.frp.value">
-            <div class="span4">{{field.label}}:</div>
+        <h3>pH Calibration</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.ph_calibration.value">
+            <div class="span4">{{field.label}}</div>
             <div class="span8">{{field.value}}</div>
           </div>
-        <h4>AWC Nomination Information</h4>
-          <div class="row-fluid" ng-repeat="field in focusObservation.awc.value">
-            <div class="span4">{{field.label}}:</div>
+        <h3>Dissolved Oxygen Calibration</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.do_calibration.value">
+            <div class="span4">{{field.label}}</div>
             <div class="span8">{{field.value}}</div>
           </div>
-        <h4>Supplemental</h4>
-          <div class="row-fluid" ng-repeat="field in focusObservation.general2.value">
-            <div class="span4">{{field.label}}:</div>
+        <h3>Conductivity Calibration</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.con_calibration.value">
+            <div class="span4">{{field.label}}</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h3>Field Data</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.field.value">
+            <div class="span4">{{field.label}}</div>
+            <div class="span8">{{field.value}}</div>
+          </div>
+        <h3>Field Conditions</h3>
+          <div class="row-fluid" ng-repeat="field in focusObservation.field_cond.value">
+            <div class="span4">{{field.label}}</div>
             <div class="span8">{{field.value}}</div>
           </div>
       </div>
