@@ -33,7 +33,6 @@
                           <th class="first"><div class="th-inner"><br />Date</div></th>
                           <th><div class="th-inner"><br />Waterbody</div></th>
                           <th><div class="th-inner"><br />pH</div></th>
-                          <th><div class="th-inner">Dissolved<br />O<sub>2</sub> (%)</div></th>
                           <th><div class="th-inner">Dissolved<br />O<sub>2</sub></div></th>
                           <th><div class="th-inner"><br />Conductivity</div></th>
                           <th><div class="th-inner">Air<br />Temp</div></th>
@@ -47,8 +46,7 @@
                           <td ng-bind="obs['general/date']+ '\n' + obs['general/st_time']" class="date"></td>
                           <td ng-bind="obs['general/wtr_bdy']" class="water-name"></td>
                           <td ng-bind="obs['field/ph']" class="ph"></td>
-                          <td ng-bind="obs['field/dssvld_o_perc']" class="diss-o"></td>
-                          <td ng-bind="obs['field/dssvld_o']" class="diss-o"></td>
+                          <td ng-bind="obs['field/dssvld_o_perc'] + '% / ' + obs['field/dssvld_o'] + 'mg/L'" class="diss-o"></td>
                           <td ng-bind="obs['field/conduct']" class="conductivity"></td>
                           <td ng-bind="obs['field/air_temp']" class="temp"></td>
                           <td ng-bind="obs['field/wtr_temp']" class="temp"></td>

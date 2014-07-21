@@ -31,8 +31,56 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
 
   $scope.markerInfo = function(point) {
     var bubble_str = "";
-    if (point.hasOwnProperty('_id')) {
-      bubble_str = bubble_str + "Observation: " + point["_id"] + "<br/>";
+    if (point.hasOwnProperty('general/wtr_bdy')) {
+      bubble_str = bubble_str + point["general/wtr_bdy"] + "<br/>";
+    }
+    if (point.hasOwnProperty('general/date')) {
+      bubble_str = bubble_str + point["general/date"];
+      if (point.hasOwnProperty('general/st_time')) {
+        bubble_str = bubble_str + ' ' + point["general/st_time"];
+      }
+      bubble_str = bubble_str + "<br/>";
+    }
+    if (point.hasOwnProperty('general/tech_name') ||
+      point.hasOwnProperty('field/ph') ||
+      point.hasOwnProperty('field/dssvld_o_perc') ||
+      point.hasOwnProperty('field/dssvld_o') ||
+      point.hasOwnProperty('field/conduct') ||
+      point.hasOwnProperty('field/air_temp') ||
+      point.hasOwnProperty('field/wtr_temp')
+      ) {
+      var table_exists = true;
+      bubble_str = bubble_str + "<table>";
+    } else {
+      var table_exists = false;
+    }
+    if (point.hasOwnProperty('general/tech_name')) {
+      bubble_str = bubble_str + "<tr><td><b>Technicians</b>:</td><td>" + point["general/tech_name"] + "</td></tr>";
+    }
+    if (point.hasOwnProperty('field/ph')) {
+      bubble_str = bubble_str + "<tr><td><b>pH</b>:</td><td>" + point["field/ph"] + "</td></tr>";
+    }
+    if (point.hasOwnProperty('field/dssvld_o_perc') || point.hasOwnProperty('field/dssvld_o')) {
+      bubble_str = bubble_str + "<tr><td><b>Dissolved <br/>0<sub>2</sub></b>:</td><td>";
+      if (point.hasOwnProperty('field/dssvld_o_perc')) {
+        bubble_str = bubble_str + point["field/dssvld_o_perc"] + "%";
+        if (point.hasOwnProperty('field/dssvld_o')) {
+          bubble_str = bubble_str + " / ";
+        }
+      }  
+      if (point.hasOwnProperty('field/dssvld_o')) {
+        bubble_str = bubble_str + point["field/dssvld_o"] + "mg/L<br/>";
+      } 
+      bubble_str = bubble_str + "</td></tr>";
+    }
+    if (point.hasOwnProperty('field/conduct')) {
+      bubble_str = bubble_str + '<tr><td><b>Conductivity</b>:</td><td>' + point["field/conduct"] + "</td></tr>";
+    }
+    if (point.hasOwnProperty('field/air_temp')) {
+      bubble_str = bubble_str + "<tr><td><b>Air Temp</b>:</td><td>" + point["field/air_temp"] + "</td></tr>";
+    }
+    if (point.hasOwnProperty('field/wtr_temp')) {
+      bubble_str = bubble_str + "<tr><td><b>Water Temp</b>:</td><td>" +  point["field/wtr_temp"] + "</td></tr>";
     }
     // if (point.hasOwnProperty('general/obs_nm')) {
     //   bubble_str = bubble_str + point["general/obs_nm"] + "<br/>";
@@ -43,6 +91,9 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
     // if (point.hasOwnProperty('general/obs_date')) {
     //   bubble_str = bubble_str + point["general/obs_date"];
     // }
+    if (table_exists) {
+      bubble_str = bubble_str + "</table>"
+    }
     return bubble_str;
   }
 
