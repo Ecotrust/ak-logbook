@@ -1,9 +1,8 @@
 'use strict';
 
 app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFactory, $routeParams, $http, $rootScope) {
-
   $rootScope.formId = 'frp_awc_survey';
-  $scope.form_name = 'frp_awc_survey'
+  $scope.form_name = $rootScope.formId;
   $scope.permits = RequestFactory.query();
 
   $scope.permitInfo = function(field) {
