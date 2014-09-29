@@ -1,3 +1,4 @@
+/*
 #surveyModal {
     visibility: visible;
     display: block !important;
@@ -53,4 +54,13 @@
     visibility: visible;
     left: 20px;
     position: absolute;
+}
+*/
+
+#yukon-details {
+    visibility: hidden;
+}
+
+#ak-details {
+    visibility: hidden;
 }

@@ -5,7 +5,7 @@
     </ul>
   </div>
 </div>
-<div class="row-fluid">
+<div class="row-fluid" id="yukon-details">
     <div class="span3">
 
         <h4> Site Numbers </h4>
@@ -78,101 +78,6 @@
         </div>
     </div>
 </div>
-<!--
-<div class="modal fade" id="exportFRPModal" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Export FRP Form (.xls)</h4>
-      </div>
-      <div class="modal-body">
-        <form name="login_form" ng-submit="frpSubmit()" class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="biologistContactDate">Date Biologist contacted</label>
-                <div class="controls">
-                  <input type="date" id="biologistContactDate" ng-model="frpExport.biologistContactDate" required>
-                </div>
-            </div>
-            <div class="pull-right">
-                <button class="btn btn-primary" type="submit">
-                    <i class="icon-download icon-white"></i>Download
-                </button>
-                <button class="btn" data-dismiss="modal">
-                    Done
-                </button>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
-<!--
-<div class="modal fade" id="exportAWCModal" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Export AWC Nomination Form (.pdf)</h4>
-      </div>
-      <div class="modal-body">
-        <form name="login_form" ng-submit="awcSubmit()" class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="submissionType">Submission Type</label>
-                <div class="controls">
-                  <select id="submissionType" ng-model="awcExport.submissionType">
-                      <option value="addition" selected>Addition</option>
-                      <option value="deletion">Deletion</option>
-                      <option value="correction">Correction</option>
-                      <option value="backup">Backup</option>
-                    </select>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="submissionType">Select Observations to include (<em>Ctl-click to select up to 5</em>)</label>
-                <div class="controls">
-                    <select id="select-observations" multiple="multiple" ng-model="awcObservations" ng-options="observation_label(obs) for obs in observations"></select>
-                </div>
-            </div>
-            <div class="pull-right">
-                <button class="btn btn-primary" type="submit">
-                    <i class="icon-download icon-white"></i>Download
-                </button>
-                <button class="btn" data-dismiss="modal">
-                    Done
-                </button>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
-<!--
-<div class="modal fade" id="photoModal" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Photo</h4>
-      </div>
-      <div class="modal-body">
-        <img class="modal-photo" ng-src="{{imgUrl}}"/>
-      </div>
-      <div class="modal-footer">
-        <div class="pull-right">
-          <button class="btn" data-dismiss="modal">
-              Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
 
 <div class="modal fade" id="detailsModal" role="dialog">
   <div class="modal-dialog">
