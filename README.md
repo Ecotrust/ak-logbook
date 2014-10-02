@@ -19,11 +19,11 @@ cd ..
 git clone https://github.com/Ecotrust/enketo.git
 cd enketo
 git submodule update --init
-cd ..
-
-cd ak-logbook
+cd ../ak-logbook
 
 # Make sure the host is not running anything on port 80 or 81!
+# you may need to also download updated puppet modules for mysql and stdlib from puppet forge and place them in puppet/modules
+
 vagrant up
 fab dev init
 fab dev restart_services
