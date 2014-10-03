@@ -15,19 +15,9 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
         <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
-        <link rel="stylesheet" href="bower_components/bootstrap-sass/bootstrap-responsive-2.3.2.min.css" />
 
     <!-- device-size dependant style -->
     <link rel='stylesheet' media='screen and (max-width: 700px)' href='styles/mobile.css'>
-
-    <!-- modal testing, examples:
-            http://codepen.io/m-e-conroy/pen/ALsdF
-            http://angular-ui.github.io/bootstrap/#/modal
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
-  -->
 
 </head>
   <body ng-app="angularjsGruntExampleApp">
@@ -47,37 +37,12 @@
           <a class="brand" href="#">Logbook</a>
           <ul class="nav btn-broup" id="page-nav">
             <li ng-class="{ active: (isActive('/') || isActive('/permits'))}"><a href="#">Dashboard</a></li>
-            <li ng-hide="!$root.formId"><a data-toggle="modal" href="#surveyModal">Survey</a></li>
-            <li ng-class="{ active: isActive('/help')}"><a href="/app/#/help">Help</a></li>
-            <!--
-            <li>Form: {{$root.formId}}</li>
-            <li>
-              <div ng-controller="ModalDemoCtrl">
-                <script type="text/ng-template" id="myModalContent.html">
-                  <div class="modal-header">
-                      <h3 class="modal-title">I am a modal!</h3>
-                  </div>
-                  <div class="modal-body">
-                      <ul>
-                          <li ng-repeat="item in items">
-                              <a ng-click="selected.item = item">{{ item }}</a>
-                          </li>
-                      </ul>
-                      Selected: <b>{{ selected.item }}</b>
-                  </div>
-                  <div class="modal-footer">
-                      <button class="btn btn-primary" ng-click="ok()">OK</button>
-                      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-                  </div>
-                </script>
-
-                <button class="btn btn-default" ng-click="open()">Open me!</button>
-                <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
-                <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
-                <div ng-show="selected">Selection from a modal: {{ selected }}</div>
-            </div>
+            <li ng-hide="!$root.formId">
+              <div class="navbar-btn" ng-controller="SurveyModalCtrl">
+                <span ng-click="open()">Survey</span>
+              </div>
             </li>
-            -->
+            <li ng-class="{ active: isActive('/help')}"><a href="#/help">Help</a></li>
             <!--
             <li><a href="#">Community</a></li>
             <li><a href="#">Profile</a></li>
@@ -97,114 +62,25 @@
       </div>
     </div> 
 
-    <div class="modal fade" id="surveyModal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title"><span id="mobile-survey-modal-header">Logbook - Observations</span><span id="desktop-survey-modal-header">Record an Observation</span></h4>
-          </div>
-          <div class="modal-body">
-
-            <div class="accordion" id="deviceAccordion">
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#deviceAccordion" href="#iosCollapse">
-                    <h4>
-                      iPhone, iPad, or other iOS Device
-                    </h4>
-                  </a>
-                </div>
-                <div id="iosCollapse" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <p>Navigate your mobile device to the following url:</p>
-                    <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
-                      {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
-                    </a>
-                    <p>Save page to your homescreen</p>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#deviceAccordion" href="#androidCollapse">
-                    <h4>
-                      Android Device
-                    </h4>
-                  </a>
-                </div>
-                <div id="androidCollapse" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <div class="accordion inner-accordion" id="androidAccordion">
-                      <div class="accordion-group">
-                        <div class="accordion-heading">
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#androidAccordion" href="#ODKCollapse">
-                            Open Data Kit
-                          </a>
-                        </div>
-                        <div id="ODKCollapse" class="accordion-body collapse">
-                          <div class="accordion-inner">
-                            <p>Download and install ODK-Collect from the Google Play store.</p>
-                            <p>
-                              The url of this web application <strong>{{$root.baseUrl}}/{{$root.userId}}</strong>
-                              must be given to ODK Collect before it will get forms from and
-                              submit data to formhub. In Collect's Main Menu, press the Menu
-                              button. Select Server Preferences, then Server. Enter
-                              <strong>{{$root.baseUrl}}/{{$root.userId}}</strong> as the server.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="accordion-group">
-                        <div class="accordion-heading">
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#androidAccordion" href="#enketoCollapse">
-                            Web App
-                          </a>
-                        </div>
-                        <div id="enketoCollapse" class="accordion-body collapse">
-                          <div class="accordion-inner">
-                            <p>Navigate your mobile device to the following url:</p>
-                            <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
-                              {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
-                            </a>
-                            <p>Save page to your homescreen</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#deviceAccordion" href="#otherDeviceCollapse">
-                    <h4>
-                      Other Mobile Device
-                    </h4>
-                  </a>
-                </div>
-                <div id="otherDeviceCollapse" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <p>Navigate your mobile device to the following url:</p>
-                    <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
-                      {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
-                    </a>
-                    <p>Save page to your homescreen</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary close-btn" data-dismiss="modal">Close</button>
-            <a ng-href="{{$root.baseUrl}}/accounts/logout"><button type="button" class="btn btn-primary logout-btn">Logout</button></a>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    
     <div class="container-fluid" id="page-content" ng-view=""></div>
+
+    <script type="text/ng-template" id="surveyModalContent.html">
+      <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="close()">&times;</button>
+        <h4 class="modal-title">Record an Observation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Navigate your computer or mobile device to the following url:</p>
+        <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
+          {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
+        </a>
+        <p>Save page to your mobile homescreen.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary close-btn" ng-click="close()">Close</button>
+        <a ng-href="{{$root.baseUrl}}/accounts/logout"><button type="button" class="btn btn-primary logout-btn">Logout</button></a>
+      </div>
+    </script>
 
     <!-- ######################################### -->
 
@@ -214,22 +90,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-leaflet/dist/angular-leaflet-directive.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-
-    <!-- build:js scripts/plugins.js -->
-    <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
-    <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
-    <!-- endbuild -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <!-- build:js scripts/modules.js -->
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -251,7 +112,7 @@
     <script src="scripts/controllers/permits.js"></script>
     <script src="scripts/controllers/yukon_water.js"></script>
     <script src="scripts/controllers/help.js"></script>
-    <script src="scripts/controllers/ModalDemoCtrl.js"></script>
+    <script src="scripts/controllers/SurveyModalCtrl.js"></script>
     <!-- endbuild -->
 </body>
 </html>

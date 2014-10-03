@@ -87,10 +87,6 @@ body {
     background: #F5F5FF
 }
 
-.modal.fade {
-    top: -50% !important;
-}
-
 .modal-photo {
     max-height: 400px;
 }
@@ -255,4 +251,12 @@ tbody {
 
 .help-well h5 {
   padding-top: 40px;
+}
+
+.navbar-btn {
+  float: none;
+  padding: 10px 15px 10px;
+  color: #777777;
+  text-decoration: none;
+  text-shadow: 0 1px 0 white;
 }
