@@ -5,6 +5,7 @@ app.factory('RequestFactory', function ($resource, $rootScope) {
   //We must take extra steps to retain port numbers due to this issue: https://github.com/angular/angular.js/issues/1243
   //    This is fixed (supposedly) in newer versions of Angular, but not the one we're using.
 
+  var formId = 'frp_awc_survey';
   var base = $rootScope.baseUrl;
   var baseLen = base.split(':').length
 
@@ -18,7 +19,7 @@ app.factory('RequestFactory', function ($resource, $rootScope) {
     // The $rootScope variables are defined in sessions/auth.js 
     // running behind nginx, this is dynamically served by django
     // running behind grunt, it's static
-    {userId: $rootScope.userId, formId: $rootScope.formId},
+    {userId: $rootScope.userId, formId: formId},
     {
       query: {
         method: 'JSONP',

@@ -25,6 +25,7 @@ cd ../ak-logbook
 # you may need to also download updated puppet modules for mysql and stdlib from puppet forge and place them in puppet/modules
 
 vagrant up
+cp fab_vars.py.template fab_vars.py # edit to point to your keys
 fab dev init
 fab dev restart_services
 fab dev manage:createsuperuser
@@ -54,17 +55,22 @@ Ecotrusters can find this data in the shared project folder: gis/projects/projec
 Copy all of the files to formhub/logbook/data/
 
 ## Requirements
-* node (with npm)
-* ruby (then `gem install compass`)
+* node (with npm) [recommend the Chris Lea repo for Ubuntu]
+* ruby
+* ruby-dev
+
+## Gem
+
+    gem install compass
 
 ## NPM
 
-    npm install -g yo grunt-cli bower karma generator-angular
-    cd <code>
-    npm install # install local node packages
+    sudo npm install -g yo grunt-cli bower karma generator-angular
+    cd angular_example      # or whichever dir your angular app lives in
+    npm install     # install local node packages
     bower install
     cd app\bower_components\leaftlet
-    npm install -g jake
+    sudo npm install -g jake
     npm install
 
 ## Other URLS - Formhub, Enketo, and OpenRosa
@@ -78,3 +84,10 @@ $config['openrosa_domains_allowed'] = array(
     array('url' => 'aklogbook.ecotrust.org', 'api_token' => 'abc123'),
 +    array('url' => 'formhub.aklogbook.ecotrust.org', 'api_token' => 'abc123'),
 );
+
+## Run it
+    For Dev, run Enketo and FormHub on a Django Dev server from logbook:
+    * fab dev runserver     # screen may be a good idea
+
+    Run the logbook static content with grunt from logbook/angular_example/:
+    * grunt server

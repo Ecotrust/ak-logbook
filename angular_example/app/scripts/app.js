@@ -3,7 +3,9 @@
 var app = angular.module('angularjsGruntExampleApp',
   [
     'ngResource',
-    'leaflet-directive'
+    'leaflet-directive',
+    'ngRoute',
+    'ui.bootstrap'
   ]
 );
 
