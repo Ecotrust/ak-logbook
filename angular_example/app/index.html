@@ -38,8 +38,8 @@
           <ul class="nav btn-broup" id="page-nav">
             <li ng-class="{ active: (isActive('/') || isActive('/permits'))}"><a href="#">Dashboard</a></li>
             <li ng-hide="!$root.formId">
-              <div class="navbar-btn" ng-controller="SurveyModalCtrl">
-                <span ng-click="open()">Survey</span>
+              <div class="navbar-btn" ng-controller="ModalCtrl">
+                <span ng-click="open('survey')">Survey</span>
               </div>
             </li>
             <li ng-class="{ active: isActive('/help')}"><a href="#/help">Help</a></li>
@@ -112,7 +112,7 @@
     <script src="scripts/controllers/permits.js"></script>
     <script src="scripts/controllers/yukon_water.js"></script>
     <script src="scripts/controllers/help.js"></script>
-    <script src="scripts/controllers/SurveyModalCtrl.js"></script>
+    <script src="scripts/controllers/modalCtrl.js"></script>
     <!-- endbuild -->
 </body>
 </html>

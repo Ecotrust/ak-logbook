@@ -161,6 +161,26 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
 
   $scope.imgUrl = "";
   $scope.focusObservation = {};
+  console.log('reset');
+
+
+
+
+
+  $scope.setFocusObservationId = function(obs) {
+    $scope.focusObservation = obs;
+    console.log($scope.focusObservation);
+  };
+
+  $scope.getObsValue = function(key) {
+    console.log(key);
+    console.log($scope.focusObservation);
+    console.log($scope.focusObservation[key]);
+    return $scope.focusObservation[key];
+  };
+
+
+
 
   /* Function readify
    * Takes: 1 javascript object "object"

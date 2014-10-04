@@ -61,6 +61,6 @@ app.run(function($rootScope){
   }
 
   $(document).ready(function(){
-    $('.carousel').carousel();
+    // $('.carousel').carousel();
   });
 });
