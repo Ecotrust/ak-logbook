@@ -20,6 +20,7 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
   var permitId = ($routeParams.permitId || $scope.permits[0]);
   $scope.permitId = permitId;
   $scope.selectObs = function(id) {
+    $rootScope.focusObsId = id;
     var marker = $scope.markers[id];
     if (marker) {
         $scope.center.lat = marker.lat;
@@ -160,27 +161,6 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
   };
 
   $scope.imgUrl = "";
-  $scope.focusObservation = {};
-  console.log('reset');
-
-
-
-
-
-  $scope.setFocusObservationId = function(obs) {
-    $scope.focusObservation = obs;
-    console.log($scope.focusObservation);
-  };
-
-  $scope.getObsValue = function(key) {
-    console.log(key);
-    console.log($scope.focusObservation);
-    console.log($scope.focusObservation[key]);
-    return $scope.focusObservation[key];
-  };
-
-
-
 
   /* Function readify
    * Takes: 1 javascript object "object"
@@ -209,21 +189,6 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
     return readableObject;
   }
 
-  $scope.deleteData = function(idToDelete, username, surveyname) {
-    var deleteAPIUrl = '/' + username + '/forms/' + surveyname + '/delete_data';
-      $.post(deleteAPIUrl, {
-          'id': idToDelete,
-          'csrfmiddlewaretoken': $scope.csrftoken
-      })
-            .success(function(data){
-              window.location.href = '/app/#/permits';
-            })
-            .error(function(){
-               alert("Delete failed.");
-          });
-        idToDelete = null;
-  }
-
   $scope.observation_label = function(object) {
     return object['general/obs_date'] + " - " + object['general/wtr_nm'] + " - " + object['general/sps_name']
   }
@@ -235,24 +200,5 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
   $(document).on('click mouseover', '[rel="tooltip"]', function (e) {
     $(e.target).tooltip('show');
   });
-
-  //Stolen from django docs: https://docs.djangoproject.com/en/dev/ref/contrib/csrf/#ajax
-  function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie != '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-  }
-
-  $scope.csrftoken = getCookie('csrftoken');
 
 });

@@ -81,13 +81,14 @@
                           <td>
                             <div class="btn-toolbar action-buttons">
                               <div class="btn-group" ng-controller="ModalCtrl">
-                                <button class="btn btn-small" ng-click="setFocusObservationId(readify(obs)); open('details');">
+                                
+                                <button class="btn btn-small" ng-click="selectObs(obs._id); setFocusObservation('details');">
                                   View 
                                 </button>
                                 <a href="/{{$root.userId}}/forms/{{form_name}}/edit-data/{{obs._id}}" class="btn edit btn-small">
                                   Edit <i ng-show="obs['general2/req_edit']" class="icon-info-sign" rel="tooltip" data-placement="top" title data-original-title="Requires editing"></i>
                                 </a>
-                                <button class="btn btn-small" ng-click="setFocusObservationId(readify(obs)); open('delete');">Delete</button>
+                                <button class="btn btn-small" ng-click="selectObs(obs._id); setFocusObservation('delete');">Delete</button>
                               </div>
                             </div>
                           </td>
@@ -131,6 +132,42 @@
   </div>
 </script>
 
+<script type="text/ng-template" id="detailsModalContent.html">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Observation {{focusObservation.id}} Details </h4>
+  </div>
+  <div class="modal-body" ng-controller="ModalCtrl">
+    <!--
+    <img ng-src="'http://aklogbook.ecotrust.org/media/demo/attachments/' + obs['general/pics']"/> 
+    -->
+    <h3>General</h3>
+      <div class="row-fluid" ng-repeat="field in focusObservation.general.value">
+        <div class="span4">{{field.label}}:</div>
+        <div class="span8">{{field.value}}</div>
+      </div>
+    <h3>FRP Information</h3>
+      <div class="row-fluid" ng-repeat="field in focusObservation.frp.value">
+        <div class="span4">{{field.label}}:</div>
+        <div class="span8">{{field.value}}</div>
+      </div>
+    <h3>AWC Nomination Information</h3>
+      <div class="row-fluid" ng-repeat="field in focusObservation.awc.value">
+        <div class="span4">{{field.label}}:</div>
+        <div class="span8">{{field.value}}</div>
+      </div>
+    <h3>Supplemental</h3>
+      <div class="row-fluid" ng-repeat="field in focusObservation.general2.value">
+        <div class="span4">{{field.label}}:</div>
+        <div class="span8">{{field.value}}</div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <div class="pull-right">
+      <button type="button" class="btn close-btn" ng-click="close()">Close</button>
+    </div>
+  </div>
+</script>
 
 <script type="text/ng-template" id="exportAwcModalContent.html">
   <div class="modal-header">
@@ -181,48 +218,6 @@
   </div>
 </script>
 
-<script type="text/ng-template" id="detailsModalContent.html">
-  <div class="modal-header">
-    <button type="button" class="close" ng-click="close()" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">Observation {{focusObservation.id}} Details </h4>
-    <ul ng-controller="PermitsCtrl">
-      <li>{{$parent}}</li>
-      <li ng-bind="{{$parent}}"></li>
-      <li ng-bind="focusObservation"></li>
-      <li ng-bind="{{getObsValue('id')}}"></li>
-      <li ng-bind="{{$parent.getObsValue('id')}}"></li>
-    </ul>
-  </div>
-  <div class="modal-body">
-    <!-- <img ng-src="'http://aklogbook.ecotrust.org/media/demo/attachments/' + obs['general/pics']"/> -->
-    <h3>General</h3>
-      <div class="row-fluid" ng-repeat="field in focusObservation.general.value">
-        <div class="span4">{{field.label}}:</div>
-        <div class="span8">{{field.value}}</div>
-      </div>
-    <h3>FRP Information</h3>
-      <div class="row-fluid" ng-repeat="field in focusObservation.frp.value">
-        <div class="span4">{{field.label}}:</div>
-        <div class="span8">{{field.value}}</div>
-      </div>
-    <h3>AWC Nomination Information</h3>
-      <div class="row-fluid" ng-repeat="field in focusObservation.awc.value">
-        <div class="span4">{{field.label}}:</div>
-        <div class="span8">{{field.value}}</div>
-      </div>
-    <h3>Supplemental</h3>
-      <div class="row-fluid" ng-repeat="field in focusObservation.general2.value">
-        <div class="span4">{{field.label}}:</div>
-        <div class="span8">{{field.value}}</div>
-      </div>
-  </div>
-  <div class="modal-footer">
-    <div class="pull-right">
-      <button type="button" class="btn close-btn" ng-click="close()">Close</button>
-    </div>
-  </div>
-</script>
-
 <script type="text/ng-template" id="deleteModalContent.html">
       <div class="modal-header">
         <button type="button" class="close" ng-click="close()" aria-hidden="true">&times;</button>
@@ -256,7 +251,7 @@
           <button class="btn btn-primary" ng-click="close()">
               No
           </button>
-          <button data-dismiss="modal" ng-click="deleteData(focusObservation.id,$root.userId,form_name);" class="btn btn-danger">
+          <button type="button" ng-click="deleteData(focusObservation.id,$root.userId,focusObservation.form_name)" class="btn btn-danger">
               Yes
           </button>
         </div>
