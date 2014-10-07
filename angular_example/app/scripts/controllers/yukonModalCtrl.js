@@ -1,4 +1,4 @@
-angular.module('angularjsGruntExampleApp').controller('ModalCtrl', function ($scope, RequestFactory, $modal, $log, $rootScope) {
+angular.module('angularjsGruntExampleApp').controller('YukonModalCtrl', function ($scope, YukonWaterRequestFactory, $modal, $log, $rootScope) {
 
   /* Function readify
    * Takes: 1 javascript object "object"
@@ -29,7 +29,7 @@ angular.module('angularjsGruntExampleApp').controller('ModalCtrl', function ($sc
   };
 
   $scope.setFocusObservation = function(modalType) {
-    RequestFactory.query(
+    YukonWaterRequestFactory.query(
       {'query': '{"_id": "' + $rootScope.focusObsId + '"}'},
       function(res) {
         $rootScope.focusObservation = $scope.readify(res[0]);
@@ -40,49 +40,9 @@ angular.module('angularjsGruntExampleApp').controller('ModalCtrl', function ($sc
   };
 
   $scope.open = function (modalType) {
-    if (modalType == "survey") {
-      var surveyModalInstance = $modal.open({
-        templateUrl: 'surveyModalContent.html',
-        controller: 'ModalInstanceCtrl',
-        resolve: {
-          items: function () {
-            return $scope.items;
-          }
-        }
-      });
-    } else if (modalType == "export-frp"){
-      var frpModalInstance = $modal.open({
-        templateUrl: 'exportFrpModalContent.html',
-        controller: 'ModalInstanceCtrl',
-        resolve: {
-          items: function () {
-            return $scope.items;
-          }
-        }
-      });
-    } else if (modalType == "export-awc"){
-      var frpModalInstance = $modal.open({
-        templateUrl: 'exportAwcModalContent.html',
-        controller: 'ModalInstanceCtrl',
-        resolve: {
-          items: function () {
-            return $scope.items;
-          }
-        }
-      });
-    } else if (modalType == "photo"){
+    if (modalType == "details"){
       var photoModalInstance = $modal.open({
-        templateUrl: 'photoModalContent.html',
-        controller: 'ModalInstanceCtrl',
-        resolve: {
-          items: function () {
-            return $scope.items;
-          }
-        }
-      });
-    } else if (modalType == "details"){
-      var photoModalInstance = $modal.open({
-        templateUrl: 'detailsModalContent.html',
+        templateUrl: 'yukonDetailsModalContent.html',
         controller: 'ModalInstanceCtrl',
         resolve: {
           items: function () {
@@ -92,7 +52,17 @@ angular.module('angularjsGruntExampleApp').controller('ModalCtrl', function ($sc
       });
     } else if (modalType == "delete"){
       var photoModalInstance = $modal.open({
-        templateUrl: 'deleteModalContent.html',
+        templateUrl: 'yukonDeleteModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+    } else if (modalType == "export-yukon"){
+      var frpModalInstance = $modal.open({
+        templateUrl: 'exportYukonModalContent.html',
         controller: 'ModalInstanceCtrl',
         resolve: {
           items: function () {
@@ -140,7 +110,7 @@ angular.module('angularjsGruntExampleApp').controller('ModalInstanceCtrl', funct
         'csrfmiddlewaretoken': $scope.csrftoken
     })
     .success(function(data){
-      window.location.href = '/app/#/permits';
+      window.location.href = '/app/#/yukon_water';
     })
     .error(function(){
        alert("Delete failed.");

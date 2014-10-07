@@ -21,6 +21,7 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
   var siteId = ($routeParams.siteId || $scope.sites[0]);
   $scope.siteId = siteId;
   $scope.selectObs = function(id) {
+    $rootScope.focusObsId = id;
     var marker = $scope.markers[id];
     if (marker) {
         $scope.center.lat = marker.lat;
@@ -82,15 +83,6 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
     if (point.hasOwnProperty('field/wtr_temp')) {
       bubble_str = bubble_str + "<tr><td><b>Water Temp</b>:</td><td>" +  point["field/wtr_temp"] + "</td></tr>";
     }
-    // if (point.hasOwnProperty('general/obs_nm')) {
-    //   bubble_str = bubble_str + point["general/obs_nm"] + "<br/>";
-    // }
-    // if (point.hasOwnProperty('general/wtr_nm')) {
-    //   bubble_str = bubble_str + point["general/wtr_nm"] + "<br/>";
-    // }
-    // if (point.hasOwnProperty('general/obs_date')) {
-    //   bubble_str = bubble_str + point["general/obs_date"];
-    // }
     if (table_exists) {
       bubble_str = bubble_str + "</table>"
     }
@@ -202,80 +194,12 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
   //     window.location.href = url;
   // };
 
-  $scope.imgUrl = "";
-  $scope.focusObservation = {};
-
-  /* Function readify
-   * Takes: 1 javascript object "object"
-   * Returns: 1 javascript object "readableObject"
-   * Purpose: add additional fields to an object so UI can reference the keys, labels, and values.
-   */
-  $scope.readify = function(object) {
-    var readableObject = {id: object._id};
-
-    for (var i = 0; i < $scope.form.children.length; i++) {
-      var newCategory = {}
-      for (var j = 0; j < $scope.form.children[i].children.length; j++) {
-        var formKey = $scope.form.children[i].name + '/' + $scope.form.children[i].children[j].name;
-        if (object.hasOwnProperty(formKey)) {
-          newCategory[$scope.form.children[i].children[j].name] = {
-            label: $scope.form.children[i].children[j].label,
-            value: object[formKey]
-          }
-        }
-      }
-      readableObject[$scope.form.children[i].name] = {
-        label: $scope.form.children[i].label,
-        value: newCategory
-      };
-    }
-    return readableObject;
-  }
-
-  $scope.deleteData = function(idToDelete, username, sitename) {
-    var deleteAPIUrl = '/' + username + '/forms/' + sitename + '/delete_data';
-      $.post(deleteAPIUrl, {
-          'id': idToDelete,
-          'csrfmiddlewaretoken': $scope.csrftoken
-      })
-            .success(function(data){
-              window.location.href = '/app/#/yukon_water';
-            })
-            .error(function(){
-               alert("Delete failed.");
-          });
-        idToDelete = null;
-  }
-
   $scope.observation_label = function(object) {
     return object['site/date'] + " - " + object['site/site_name'] + " - " + object['site/loc_city'] + ", " + ['site/loc_state']
   }
 
-  // $scope.getImgUrl = function(observation) {
-    // return '/media/' + $rootScope.userId + '/attachments/' + observation['general/pics'];
-  // }
-
   $(document).on('click mouseover', '[rel="tooltip"]', function (e) {
     $(e.target).tooltip('show');
   });
-
-  //Stolen from django docs: https://docs.djangoproject.com/en/dev/ref/contrib/csrf/#ajax
-  function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie != '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-  }
-
-  $scope.csrftoken = getCookie('csrftoken');
 
 });
