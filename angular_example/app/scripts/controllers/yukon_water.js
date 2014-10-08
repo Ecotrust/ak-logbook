@@ -152,47 +152,21 @@ app.controller('YukonWaterCtrl', function ($scope, YukonWaterRequestFactory, Yuk
     }
   };
 
-  // $scope.frpExport = {};
-  // $scope.frpSubmit = function(){
-  //     var data = $scope.frpExport;
-  //     data.survey = $scope.surveyId;
+  $scope.yukonExport = {};
+  $scope.yukonCustomSubmit = function(){
+      var data = $scope.yukonExport;
+      data.site = $scope.siteId;
 
-  //     var serializedParams = '';
-  //     for (var key in data) {
-  //       if (serializedParams !== '') {
-  //         serializedParams += '&';
-  //       }
-  //       serializedParams += key + '=' + data[key];
-  //     }
-  //     var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/frp.xls?' + serializedParams;
-  //     window.location.href = url;
-  // };
-
-  // $scope.awcExport = {};
-  // $scope.awcObservations = [];
-  // $scope.awcSubmit = function(){
-  //     var data = $scope.awcExport;
-  //     data.survey = $scope.surveyId;
-
-  //     var serializedParams = '';
-  //     for (var key in data) {
-  //       if (serializedParams !== '') {
-  //         serializedParams += '&';
-  //       }
-  //       serializedParams += key + '=' + data[key];
-  //     }
-
-  //     var obsIds = [];
-  //     var obs;
-  //     for (var i = $scope.awcObservations.length - 1; i >= 0; i--) {
-  //       obs = $scope.awcObservations[i];
-  //       obsIds.push(obs._uuid);
-  //     }
-  //     serializedParams += '&observations=' + obsIds.join(',');
-
-  //     var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/awc.pdf?' + serializedParams;
-  //     window.location.href = url;
-  // };
+      var serializedParams = '';
+      for (var key in data) {
+        if (serializedParams !== '') {
+          serializedParams += '&';
+        }
+        serializedParams += key + '=' + data[key];
+      }
+      var url = $rootScope.baseUrl + '/' + $rootScope.userId + '/forms/' + $rootScope.formId + '/yukon.xls?' + serializedParams;
+      window.location.href = url;
+  };
 
   $scope.observation_label = function(object) {
     return object['site/date'] + " - " + object['site/site_name'] + " - " + object['site/loc_city'] + ", " + ['site/loc_state']
