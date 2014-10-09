@@ -74,7 +74,7 @@
                           <td ng-bind="obs['general/wtr_nm']" class="water-name"></td>
                           <td ng-bind="obs['general/sps_name']" class="species"></td>
                           <td class="photo" ng-controller="ModalCtrl">
-                            <button class="btn btn-small" ng-show="obs['general/pics']" ng-click="$parent.imgUrl = getImgUrl(obs); open('photo');">
+                            <button class="btn btn-small" ng-show="obs['general/pics']" ng-click="setImgUrl(obs); open('photo');">
                               View
                             </button>
                           </td>
@@ -208,7 +208,7 @@
     <button type="button" class="close" ng-click="close()" aria-hidden="true">&times;</button>
     <h4 class="modal-title">Photo</h4>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" ng-controller="ModalCtrl">
     <img class="modal-photo" ng-src="{{imgUrl}}"/>
   </div>
   <div class="modal-footer">
