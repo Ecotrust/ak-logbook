@@ -1,0 +1,100 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="styles/6d6312b0.main.css">
+        <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+
+    <!-- device-size dependant style -->
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="styles/mobile.css">
+
+</head>
+  <body ng-app="angularjsGruntExampleApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- ######################################### -->
+    <div class="navbar navbar-fixed-top" ng-controller="headCtrl">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Logbook</a>
+          <ul class="nav btn-broup" id="page-nav">
+            <li ng-class="{ active: (isActive('/') || isActive('/permits'))}"><a href="#">Dashboard</a></li>
+            <li ng-hide="!$root.formId">
+              <div class="navbar-btn" ng-controller="ModalCtrl">
+                <span ng-click="open('survey')">Survey</span>
+              </div>
+            </li>
+            <li ng-class="{ active: isActive('/help')}"><a href="#/help">Help</a></li>
+            <!--
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Profile</a></li>
+            -->
+          </ul>
+          <ul class="nav pull-right" ng-hide="$root.userId == '' || !$root.userId">
+            <li> <p class="text-success navp" ng-bind="$root.userId" p=""> </p></li>
+            <li class="divider"></li>
+            <li> <a ng-href="{{$root.baseUrl}}/accounts/logout">logout</a> </li>
+          </ul>
+          <ul class="nav pull-right" ng-hide="$root.userId && $root.userId != ''">
+            <li> <a href="">Create an Account</a> </li>
+            <li class="divider"></li>
+            <li> <a ng-href="{{$root.baseUrl}}/accounts/login">login</a> </li>
+          </ul>
+        </div>
+      </div>
+    </div> 
+
+    <div class="container-fluid" id="page-content" ng-view=""></div>
+
+    <script type="text/ng-template" id="surveyModalContent.html">
+      <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="close()">&times;</button>
+        <h4 class="modal-title">Record an Observation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Navigate your computer or mobile device to the following url:</p>
+        <a ng-href="{{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data">
+          {{$root.baseUrl}}/{{$root.userId}}/forms/{{$root.formId}}/enter-data
+        </a>
+        <p>Save page to your mobile homescreen.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary close-btn" ng-click="close()">Close</button>
+        <a ng-href="{{$root.baseUrl}}/accounts/logout"><button type="button" class="btn btn-primary logout-btn">Logout</button></a>
+      </div>
+    </script>
+
+    <!-- ######################################### -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-leaflet/dist/angular-leaflet-directive.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <script src="scripts/6b865daa.modules.js"></script>
+
+    <script src="scripts/489ca07d.app.js"></script>
+    <script src="sessions/auth.js"></script>
+
+    <script src="scripts/f0e91d40.scripts.js"></script>
+</body>
+</html>
