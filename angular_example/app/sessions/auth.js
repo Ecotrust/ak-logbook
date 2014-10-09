@@ -7,7 +7,7 @@
 app.run(function($rootScope){
   $rootScope.userId = 'demo';
   // $rootScope.formId = '';
-  $rootScope.baseUrl = 'http://logbook.ecotrust.org'; // no trailing slash
-  //$rootScope.baseUrl = 'http://aklogbook.ecotrust.org'; // no trailing slash
+  // $rootScope.baseUrl = 'http://localhost:8000'; // no trailing slash
+  $rootScope.baseUrl = 'http://aklogbook.ecotrust.org'; // no trailing slash
 });
 // var PORT_NUMBER = ':8080';  

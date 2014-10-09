@@ -103,6 +103,13 @@ angular.module('angularjsGruntExampleApp').controller('ModalCtrl', function ($sc
     }
   };
 
+  $scope.setImgUrl = function(observation) {
+    var imgUrl = $rootScope.baseUrl + '/media/' + $rootScope.userId + '/attachments/' + observation['general/pics'];
+    $rootScope.imgUrl = imgUrl;
+  };
+  
+
+
 });
 
 // Please note that $modalInstance represents a modal window (instance) dependency.

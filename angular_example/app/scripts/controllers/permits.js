@@ -160,8 +160,6 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
       window.location.href = url;
   };
 
-  $scope.imgUrl = "";
-
   /* Function readify
    * Takes: 1 javascript object "object"
    * Returns: 1 javascript object "readableObject"
@@ -191,10 +189,6 @@ app.controller('PermitsCtrl', function ($scope, RequestFactory, FormRequestFacto
 
   $scope.observation_label = function(object) {
     return object['general/obs_date'] + " - " + object['general/wtr_nm'] + " - " + object['general/sps_name']
-  }
-
-  $scope.getImgUrl = function(observation) {
-    return '/media/' + $rootScope.userId + '/attachments/' + observation['general/pics'];
   }
 
   $(document).on('click mouseover', '[rel="tooltip"]', function (e) {
