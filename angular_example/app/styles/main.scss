@@ -63,12 +63,20 @@ body {
     margin: -20% 0 -35% 0;
 }
 
+.header {
+    text-align: center;
+}
+
 .survey-box {
     min-height: 250px !important;
 }
 
 .survey-button-box {
     text-align: center;
+}
+.survey-button-box button{
+    width: 100%;
+    padding: 25px;
 }
 
 .survey-button-box button{
@@ -117,6 +125,14 @@ tbody {
 .header-background {
     position: absolute;
     height: 30px;
+}
+
+.nav-username {
+    margin-top: 10px;
+}
+
+.navbar .nav>li>span {
+    padding-top: 7px;
 }
 
 .fixed-table-container-inner {

@@ -9,6 +9,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css(.tmp) styles/main.css -->
@@ -49,7 +51,7 @@
             -->
           </ul>
           <ul class="nav pull-right" ng-hide="$root.userId == '' || !$root.userId">
-            <li> <p class="text-success navp" ng-bind="$root.userId"</p> </li>
+            <li class="nav-username"> <span class="text-success navp" ng-bind="$root.userId"></span> </li>
             <li class="divider"></li>
             <li> <a ng-href="{{$root.baseUrl}}/accounts/logout">logout</a> </li>
           </ul>

@@ -15617,6 +15617,10 @@ body {
   min-height: 250px !important;
 }
 
+.header {
+    text-align: center;
+}
+
 @media -sass-debug-info {
   filename {
     font-family: file\:\/\/C\:\/Dev\/aklogbook\/ak-logbook\/angular_example\/app\/styles\/main\.scss;
@@ -15629,6 +15633,12 @@ body {
 
 .survey-button-box {
   text-align: center;
+}
+
+
+.survey-button-box button{
+    width: 100%;
+    padding: 25px;
 }
 
 @media -sass-debug-info {
@@ -16154,4 +16164,12 @@ tbody {
   color: #777777;
   text-decoration: none;
   text-shadow: 0 1px 0 white;
+}
+
+.nav-username {
+    margin-top: 10px;
+}
+
+.navbar .nav>li>span {
+    padding-top: 7px;
 }

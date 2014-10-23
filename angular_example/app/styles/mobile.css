@@ -64,3 +64,25 @@
 #ak-details {
     visibility: hidden;
 }
+
+.nav-username {
+    margin-top: 7px;
+}
+
+.navbar .nav>li>a,
+.navbar .nav>li>span,
+.navbar-btn {
+    padding: 7px 2px 7px 1px;
+}
+
+.navbar .brand {
+    padding: 7px 0 7px 23px;
+}
+
+.navbar-inner {
+    padding: 10px 10px 0;
+}
+
+#page-content {
+    padding: 0;
+}
