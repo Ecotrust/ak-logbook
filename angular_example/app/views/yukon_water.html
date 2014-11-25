@@ -28,19 +28,19 @@
   </div>
 </div>
 <div class="row-fluid" id="yukon-details">
-    <div class="span3">
+    <div class="span2">
 
         <h4> Site Numbers </h4>
 
         <div class="dropdown clearfix">
           <ul class="dropdown-menu permit-list" role="menu" aria-labelledby="dropdownMenu">
             <li ng-repeat="val in siteInfo('general/site_id')">
-              <a ng-href="#/yukon_water/{{val}}" ng-bind="val"></a>
+              <a ng-href="#/yukon_water/{{val}}" ng-bind="val" ng-if="val.length>0"></a>
             </li>
           </ul>
         </div>
     </div>
-    <div class="span9" ng-show="siteId">
+    <div class="span10" ng-show="siteId">
         <div class="row-fluid">
             <div class="span12">
               <h4>Observations for Site <span class="text-info" ng-bind="siteId"></span></h4>
@@ -53,11 +53,12 @@
                         <tr>
                           <!-- <th class="first"><div class="th-inner">ID</div></th> -->
                           <th class="first"><div class="th-inner"><br />Date</div></th>
-                          <th><div class="th-inner"><br />Waterbody</div></th>
+                          <th><div class="th-inner">Tech<br/>Name</div></th>
+                          <th><div class="th-inner">Water-<br/>body</div></th>
                           <th><div class="th-inner"><br />pH</div></th>
                           <th><div class="th-inner">Dissolved<br />O<sub>2</sub></div></th>
-                          <th><div class="th-inner"><br />Conductivity</div></th>
-                          <th><div class="th-inner">Air<br />Temp</div></th>
+                          <th><div class="th-inner">Conduct-<br/>ivity</div></th>
+                          <!-- <th><div class="th-inner">Air<br />Temp</div></th> -->
                           <th><div class="th-inner">Water<br />Temp</div></th>
                           <th><div class="th-inner"><br />Action</div></th>
                         </tr>
@@ -66,17 +67,18 @@
                         <tr ng-click="selectObs(obs._id)" ng-repeat="obs in observations">
                           <!-- <td ng-bind="obs._id" class="sample-id"></td> -->
                           <td ng-bind="obs['general/date']+ '\n' + obs['general/st_time']" class="date"></td>
-                          <td ng-bind="obs['general/wtr_bdy']" class="water-name"></td>
+                          <td ng-bind="obs['general/tech_name']" class="tech-name"></td>
+                          <td ng-bind="obs['general/wtr_bdy']" class="tech-name"></td>
                           <td ng-bind="obs['field/ph']" class="ph"></td>
                           <td ng-bind="obs['field/dssvld_o_perc'] + '% / ' + obs['field/dssvld_o'] + 'mg/L'" class="diss-o"></td>
                           <td ng-bind="obs['field/conduct']" class="conductivity"></td>
-                          <td ng-bind="obs['field/air_temp']" class="temp"></td>
+                          <!-- <td ng-bind="obs['field/air_temp']" class="temp"></td> -->
                           <td ng-bind="obs['field/wtr_temp']" class="temp"></td>
                           <!-- <td class="photo"><button class="btn btn-small" ng-show="obs['general/pics']" data-toggle="modal" href="#photoModal" ng-click="$parent.imgUrl = getImgUrl(obs);">View</button></td> -->
                           <td class="action">
                             <div class="btn-toolbar action-buttons">
                               <div class="btn-group" ng-controller="YukonModalCtrl">
-                                <button class="btn btn-small" ng-click="selectObs(obs._id); setFocusObservation('details');">View</button>
+                                <button class="btn view btn-small" ng-click="selectObs(obs._id); setFocusObservation('details');">View</button>
                                 <a href="/{{$root.userId}}/forms/{{form_name}}/edit-data/{{obs._id}}" class="btn edit btn-small">Edit</a>
                                 <button class="btn btn-small" ng-click="selectObs(obs._id); setFocusObservation('delete');">Delete</button>
                               </div>

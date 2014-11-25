@@ -15931,6 +15931,10 @@ tbody {
   }
 }
 
+.fixed-table-container td.tech-name {
+  min-width: 45px;
+}
+
 .fixed-table-container td.water-name {
   min-width: 70px;
 }
@@ -16002,7 +16006,7 @@ tbody {
 }
 
 .fixed-table-container td.conductivity {
-  min-width: 80px;
+  min-width: 50px;
 }
 
 @media -sass-debug-info {
